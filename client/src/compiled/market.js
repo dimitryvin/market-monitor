@@ -1192,6 +1192,35 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
   return "<div class=\"logo\"><strong>Market</strong>Monitor</div>\r\n\r\n<ul class=\"nav\">\r\n	<li class=\"item\">Portfolios</li>\r\n	<li class=\"item\">Trends</li>\r\n	<li class=\"item\">Settings</li>		\r\n</ul>";
   });
+templates['sections/PortfolioView'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\r\n<tr>\r\n	<td class=\"text\">"
+    + escapeExpression(((stack1 = (depth0 && depth0.ticker)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</td>\r\n	<td class=\"number\">"
+    + escapeExpression(((stack1 = (depth0 && depth0.price)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</td>\r\n	<td class=\"number\">"
+    + escapeExpression(((stack1 = (depth0 && depth0.quantity)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</td>\r\n	<td class=\"number\">"
+    + escapeExpression(((stack1 = (depth0 && depth0.low)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</td>\r\n	<td class=\"number\">"
+    + escapeExpression(((stack1 = (depth0 && depth0.high)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</td>\r\n	<td class=\"number\">"
+    + escapeExpression(((stack1 = (depth0 && depth0.beta)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</td>\r\n</tr>\r\n";
+  return buffer;
+  }
+
+  buffer += "<tr><th class=\"text\">Ticker</th><th class=\"number\">Price</th><th class=\"number\">Quantity</th><th class=\"number\">Low</th><th class=\"number\">High</th><th class=\"number\">Beta</th></tr>\r\n";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.securities), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  return buffer;
+  });
 templates['SideView'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -1201,28 +1230,44 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return "<ul class=\"nav-items\">\r\n	<li class=\"item\">+ Add Portfolio</li>\r\n	<li class=\"item\">Portfolio 1</li>\r\n	<li class=\"item\">Portfolio 2</li>\r\n	<li class=\"item\">Portfolio 3</li>\r\n	<li class=\"item\">Portfolio 4</li>\r\n</ul>";
   });
 })();
+$(function() {
+
+	var appView = new AppView();
+
+	$('body').prepend(appView.el);
+
+
+});
 
 var AppView = timber({
 
-	className: 'app-container',
+    className: 'app-container',
 
-	init: function() {
-		this.render();
-	},
+    init: function() {
+        this.render();
+    },
 
-	render: function() {
+    render: function() {
 
-		this.$el.html(Handlebars.templates.AppView()); 
+        this.$el.html(Handlebars.templates.AppView()); 
 
-		var headerView = new HeaderView();
-		var sideView = new SideView();
+        var headerView = new HeaderView();
+        var sideView = new SideView();
 
-		this.$el.prepend(sideView.el);
-		this.$el.prepend(headerView.el);
+        this.$el.prepend(sideView.el);
+        this.$el.prepend(headerView.el);
 
-	}
+        //TEMP
+        var portView = new PortfolioView();
+        this.setView(portView);
 
-})
+    },
+
+    setView: function(view) {
+        this.$el.find('.container').html(view.el);
+    }
+
+});
 var HeaderView = timber({
 
 	className: 'main-header',
@@ -1261,11 +1306,67 @@ var SideView = timber({
 	}
 
 })
-$(function() {
+var PortfolioView = timber({
 
-	var appView = new AppView();
+	className: 'portfolio',
 
-	$('body').prepend(appView.el);
+	tagName: "table",
 
+	init: function() {
+
+		this.render();
+
+	},
+
+	render: function() {
+
+		var secs = [
+		    {
+		        "ticker": "AAPL",
+		        "price": 26,
+		        "quantity": 10,
+		        "low": 26,
+		        "high": 26,
+		        "beta": -4
+		    },
+		    {
+		        "ticker": "F",
+		        "price": 27,
+		        "quantity": 91,
+		        "low": 25,
+		        "high": 21,
+		        "beta": 3
+		    },
+		    {
+		        "ticker": "TSLA",
+		        "price": 25,
+		        "quantity": 47,
+		        "low": 30,
+		        "high": 28,
+		        "beta": 1
+		    },
+		    {
+		        "ticker": "VHT",
+		        "price": 23,
+		        "quantity": 61,
+		        "low": 20,
+		        "high": 24,
+		        "beta": -1
+		    },
+		    {
+		        "ticker": "VGLT",
+		        "price": 40,
+		        "quantity": 33,
+		        "low": 29,
+		        "high": 36,
+		        "beta": 4
+		    }
+		];
+
+		this.$el.html(Handlebars.templates['sections/PortfolioView']({
+			securities: secs
+		})); 
+
+	}
 
 });

@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 
         concat: {
             mainApp: {
-            src: ["client/src/lib/js/**/*.js", "client/src/compiled/templates.js", "client/src/js/*/*.js", 'client/src/js/AppMain.js'],
+            src: ["client/src/lib/js/**/*.js", "client/src/compiled/templates.js", "client/src/js/**/*.js", 'client/src/js/AppMain.js'],
               dest: 'client/src/compiled/market.js'
             }
         },
@@ -46,7 +46,7 @@ module.exports = function(grunt) {
                 livereload: true,
             },
             handlebars: {
-                files: 'client/src/templates/*.handlebars',
+                files: 'client/src/templates/**/*.handlebars',
                 tasks: ['h', 'js']
             },
             less: {
