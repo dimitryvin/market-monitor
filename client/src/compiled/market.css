@@ -7,9 +7,17 @@ html {
 }
 .app-container {
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
 }
-.app-container .container {
+.app-container .parent-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 90px;
+}
+.app-container .parent-container .container {
+  height: 100%;
   margin-left: 260px;
 }
 
@@ -153,53 +161,56 @@ html {
   cursor: pointer;
 }
 
-.portfolio {
-  width: 100%;
+.portfolio-container {
   height: 100%;
+  overflow: auto;
+}
+.portfolio-container .portfolio {
+  width: 100%;
   margin: 0;
   padding: 0;
   border: none;
   border-collapse: collapse;
 }
-.portfolio th {
+.portfolio-container .portfolio th {
   text-align: left;
   font-weight: normal;
 }
-.portfolio tr {
+.portfolio-container .portfolio tr {
   cursor: pointer;
 }
-.portfolio tr:first-child {
+.portfolio-container .portfolio tr:first-child {
   color: #aeaeae;
 }
-.portfolio tr:first-child th {
+.portfolio-container .portfolio tr:first-child th {
   padding-top: 15px;
 }
-.portfolio tr:first-child th:first-child {
+.portfolio-container .portfolio tr:first-child th:first-child {
   padding-left: 20px;
 }
-.portfolio tr:first-child th:last-child {
+.portfolio-container .portfolio tr:first-child th:last-child {
   padding-right: 20px;
 }
-.portfolio tr td:first-child {
+.portfolio-container .portfolio tr td:first-child {
   padding-left: 20px;
 }
-.portfolio tr td:last-child {
+.portfolio-container .portfolio tr td:last-child {
   padding-right: 20px;
 }
-.portfolio tr:hover {
+.portfolio-container .portfolio tr:hover {
   background: #e9f0fa;
 }
-.portfolio td,
-.portfolio th {
+.portfolio-container .portfolio td,
+.portfolio-container .portfolio th {
   padding: 10px;
   border-bottom: 1px solid #e9f0fa;
 }
-.portfolio td.number,
-.portfolio th.number {
+.portfolio-container .portfolio td.number,
+.portfolio-container .portfolio th.number {
   text-align: right;
 }
-.portfolio td.text,
-.portfolio th.text {
+.portfolio-container .portfolio td.text,
+.portfolio-container .portfolio th.text {
   text-align: left;
 }
 
@@ -208,6 +219,7 @@ html {
   height: 100%;
   background: #e9f0fa;
   float: left;
+  overflow: auto;
 }
 .side-view .nav-items {
   margin: 0;

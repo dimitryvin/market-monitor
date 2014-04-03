@@ -1,11 +1,13 @@
-<tr><th class="text">Ticker</th><th class="number">Price</th><th class="number">Quantity</th><th class="number">Low</th><th class="number">High</th><th class="number">Beta</th></tr>
-{{#each securities}}
-<tr>
-	<td class="text">{{this.ticker}}</td>
-	<td class="number">{{this.price}}</td>
-	<td class="number">{{this.quantity}}</td>
-	<td class="number">{{this.low}}</td>
-	<td class="number">{{this.high}}</td>
-	<td class="number">{{this.beta}}</td>
-</tr>
-{{/each}}
+<table class="portfolio">
+	<tr><th class="text">Ticker</th><th class="number">Price</th><th class="number">Quantity</th><th class="number">Low</th><th class="number">High</th><th class="number">Beta</th></tr>
+	{{#each securities}}
+	<tr>
+		<td class="text">{{this.ticker}}</td>
+		<td class="number">{{this.price}}</td>
+		<td class="number">{{this.quantity}}</td>
+		<td class="number">{{this.low}}</td>
+		<td class="number">{{this.high}}</td>
+		<td class="number">{{this.beta}}</td>
+	</tr>
+	{{/each}}
+</table>

@@ -13,7 +13,7 @@ var AppView = timber({
         var headerView = new HeaderView();
         var sideView = new SideView();
 
-        this.$el.prepend(sideView.el);
+        this.$el.find('.parent-container').prepend(sideView.el);
         this.$el.prepend(headerView.el);
 
         //TEMP

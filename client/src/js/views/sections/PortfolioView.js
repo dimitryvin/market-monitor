@@ -1,8 +1,8 @@
 var PortfolioView = timber({
 
-	className: 'portfolio',
+	className: 'portfolio-container',
 
-	tagName: "table",
+	tagName: "div",
 
 	init: function() {
 

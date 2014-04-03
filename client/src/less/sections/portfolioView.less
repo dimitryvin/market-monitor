@@ -1,63 +1,69 @@
-.portfolio {
-
-	width: 100%;
+.portfolio-container {	
 	height: 100%;
-	margin: 0;
-	padding: 0;
-	border: none;
-	border-collapse: collapse;
+	overflow: auto;
 
-	th {
-		text-align: left;
-		font-weight: normal;
-	}
 
-	tr {
+	.portfolio {
 
-		cursor: pointer;
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		border: none;
+		border-collapse: collapse;
 
-		&:first-child {
-			color: #aeaeae;
+		th {
+			text-align: left;
+			font-weight: normal;
+		}
 
-			th {
-				padding-top: 15px;
+		tr {
 
+			cursor: pointer;
+
+			&:first-child {
+				color: #aeaeae;
+
+				th {
+					padding-top: 15px;
+
+					&:first-child {
+						padding-left: 20px;
+					}
+
+					&:last-child {
+						padding-right: 20px;
+					}
+
+				}
+
+			}
+
+			td {
 				&:first-child {
 					padding-left: 20px;
 				}
-
 				&:last-child {
 					padding-right: 20px;
 				}
-
 			}
 
-		}
-
-		td {
-			&:first-child {
-				padding-left: 20px;
-			}
-			&:last-child {
-				padding-right: 20px;
+			&:hover {
+				background: #e9f0fa;
 			}
 		}
 
-		&:hover {
-			background: #e9f0fa;
+		td, th {
+			padding: 10px;
+			border-bottom: 1px solid #e9f0fa;
+
+			&.number {
+				text-align: right;
+			}
+
+			&.text {
+				text-align: left;
+			}
 		}
 	}
 
-	td, th {
-		padding: 10px;
-		border-bottom: 1px solid #e9f0fa;
-
-		&.number {
-			text-align: right;
-		}
-
-		&.text {
-			text-align: left;
-		}
-	}
 }

@@ -7,10 +7,20 @@ body, html {
 
 .app-container {
 	height: 100%;
-	overflow: hidden;
+	overflow: auto;
 
-	.container {
-		margin-left: 260px;
+
+	.parent-container {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		top: 90px;
+
+		.container {
+			height: 100%;
+			margin-left: 260px;
+		}
 	}
 
 }
