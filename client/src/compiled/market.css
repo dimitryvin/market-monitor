@@ -186,52 +186,52 @@ html {
   height: 100%;
   overflow: auto;
 }
-.portfolio-container .portfolio {
+.portfolio-container .stock-list {
   width: 100%;
   margin: 0;
   padding: 0;
   border: none;
   border-collapse: collapse;
 }
-.portfolio-container .portfolio th {
+.portfolio-container .stock-list th {
   text-align: left;
   font-weight: normal;
 }
-.portfolio-container .portfolio tr {
+.portfolio-container .stock-list tr {
   cursor: pointer;
 }
-.portfolio-container .portfolio tr:first-child {
+.portfolio-container .stock-list tr:first-child {
   color: #aeaeae;
 }
-.portfolio-container .portfolio tr:first-child th {
+.portfolio-container .stock-list tr:first-child th {
   padding-top: 15px;
 }
-.portfolio-container .portfolio tr:first-child th:first-child {
+.portfolio-container .stock-list tr:first-child th:first-child {
   padding-left: 20px;
 }
-.portfolio-container .portfolio tr:first-child th:last-child {
+.portfolio-container .stock-list tr:first-child th:last-child {
   padding-right: 20px;
 }
-.portfolio-container .portfolio tr td:first-child {
+.portfolio-container .stock-list tr td:first-child {
   padding-left: 20px;
 }
-.portfolio-container .portfolio tr td:last-child {
+.portfolio-container .stock-list tr td:last-child {
   padding-right: 20px;
 }
-.portfolio-container .portfolio tr:hover {
+.portfolio-container .stock-list tr:hover {
   background: #e9f0fa;
 }
-.portfolio-container .portfolio td,
-.portfolio-container .portfolio th {
+.portfolio-container .stock-list td,
+.portfolio-container .stock-list th {
   padding: 10px;
   border-bottom: 1px solid #e9f0fa;
 }
-.portfolio-container .portfolio td.number,
-.portfolio-container .portfolio th.number {
+.portfolio-container .stock-list td.number,
+.portfolio-container .stock-list th.number {
   text-align: right;
 }
-.portfolio-container .portfolio td.text,
-.portfolio-container .portfolio th.text {
+.portfolio-container .stock-list td.text,
+.portfolio-container .stock-list th.text {
   text-align: left;
 }
 

@@ -16,6 +16,7 @@ var AppView = timber({
         this.$el.find('.parent-container').prepend(sideView.el);
         this.$el.prepend(headerView.el);
 
+
         //TEMP
         var portView = new PortfolioView();
         this.setView(portView);
