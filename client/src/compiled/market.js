@@ -1187,10 +1187,24 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 templates['HeaderView'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
+
+function program1(depth0,data) {
   
+  var buffer = "", stack1;
+  buffer += "\r\n	<li class=\"item\"><i class=\"fa "
+    + escapeExpression(((stack1 = (depth0 && depth0.icon)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "\"></i> "
+    + escapeExpression(((stack1 = (depth0 && depth0.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</li>\r\n	";
+  return buffer;
+  }
 
-
-  return "<div class=\"logo\"><strong>Market</strong>Monitor</div>\r\n\r\n<ul class=\"nav\">\r\n	<li class=\"item\">Portfolios</li>\r\n	<li class=\"item\">Trends</li>\r\n	<li class=\"item\">Settings</li>		\r\n</ul>";
+  buffer += "<div class=\"logo\"><strong>Market</strong>Monitor</div>\r\n\r\n<ul class=\"nav\">\r\n	";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.navitems), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "	\r\n</ul>";
+  return buffer;
   });
 templates['sections/PortfolioView'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
@@ -1275,6 +1289,23 @@ var HeaderView = timber({
 
 	tagName: "header",
 
+	defaults: {
+		navitems: [
+			{
+				title: "Portfolios",
+				icon: "fa-folder-open"
+			},
+			{
+				title: "Trends",
+				icon: "fa-flask"
+			},
+			{
+				title: "Settings",
+				icon: "fa-cog"
+			}
+		]
+	},
+
 	init: function() {
 
 		this.render();
@@ -1283,7 +1314,9 @@ var HeaderView = timber({
 
 	render: function() {
 
-		this.$el.html(Handlebars.templates.HeaderView()); 
+		this.$el.html(Handlebars.templates.HeaderView({
+			navitems: this.navitems
+		})); 
 
 	}
 
@@ -1323,6 +1356,162 @@ var PortfolioView = timber({
 
 		var secs = [
 		    {
+		        "ticker": "AAPL",
+		        "price": 26,
+		        "quantity": 10,
+		        "low": 26,
+		        "high": 26,
+		        "beta": -4
+		    },
+		    {
+		        "ticker": "F",
+		        "price": 27,
+		        "quantity": 91,
+		        "low": 25,
+		        "high": 21,
+		        "beta": 3
+		    },
+		    {
+		        "ticker": "TSLA",
+		        "price": 25,
+		        "quantity": 47,
+		        "low": 30,
+		        "high": 28,
+		        "beta": 1
+		    },
+		    {
+		        "ticker": "VHT",
+		        "price": 23,
+		        "quantity": 61,
+		        "low": 20,
+		        "high": 24,
+		        "beta": -1
+		    },
+		    {
+		        "ticker": "VGLT",
+		        "price": 40,
+		        "quantity": 33,
+		        "low": 29,
+		        "high": 36,
+		        "beta": 4
+		    }, {
+		        "ticker": "AAPL",
+		        "price": 26,
+		        "quantity": 10,
+		        "low": 26,
+		        "high": 26,
+		        "beta": -4
+		    },
+		    {
+		        "ticker": "F",
+		        "price": 27,
+		        "quantity": 91,
+		        "low": 25,
+		        "high": 21,
+		        "beta": 3
+		    },
+		    {
+		        "ticker": "TSLA",
+		        "price": 25,
+		        "quantity": 47,
+		        "low": 30,
+		        "high": 28,
+		        "beta": 1
+		    },
+		    {
+		        "ticker": "VHT",
+		        "price": 23,
+		        "quantity": 61,
+		        "low": 20,
+		        "high": 24,
+		        "beta": -1
+		    },
+		    {
+		        "ticker": "VGLT",
+		        "price": 40,
+		        "quantity": 33,
+		        "low": 29,
+		        "high": 36,
+		        "beta": 4
+		    }, {
+		        "ticker": "AAPL",
+		        "price": 26,
+		        "quantity": 10,
+		        "low": 26,
+		        "high": 26,
+		        "beta": -4
+		    },
+		    {
+		        "ticker": "F",
+		        "price": 27,
+		        "quantity": 91,
+		        "low": 25,
+		        "high": 21,
+		        "beta": 3
+		    },
+		    {
+		        "ticker": "TSLA",
+		        "price": 25,
+		        "quantity": 47,
+		        "low": 30,
+		        "high": 28,
+		        "beta": 1
+		    },
+		    {
+		        "ticker": "VHT",
+		        "price": 23,
+		        "quantity": 61,
+		        "low": 20,
+		        "high": 24,
+		        "beta": -1
+		    },
+		    {
+		        "ticker": "VGLT",
+		        "price": 40,
+		        "quantity": 33,
+		        "low": 29,
+		        "high": 36,
+		        "beta": 4
+		    }, {
+		        "ticker": "AAPL",
+		        "price": 26,
+		        "quantity": 10,
+		        "low": 26,
+		        "high": 26,
+		        "beta": -4
+		    },
+		    {
+		        "ticker": "F",
+		        "price": 27,
+		        "quantity": 91,
+		        "low": 25,
+		        "high": 21,
+		        "beta": 3
+		    },
+		    {
+		        "ticker": "TSLA",
+		        "price": 25,
+		        "quantity": 47,
+		        "low": 30,
+		        "high": 28,
+		        "beta": 1
+		    },
+		    {
+		        "ticker": "VHT",
+		        "price": 23,
+		        "quantity": 61,
+		        "low": 20,
+		        "high": 24,
+		        "beta": -1
+		    },
+		    {
+		        "ticker": "VGLT",
+		        "price": 40,
+		        "quantity": 33,
+		        "low": 29,
+		        "high": 36,
+		        "beta": 4
+		    }, {
 		        "ticker": "AAPL",
 		        "price": 26,
 		        "quantity": 10,

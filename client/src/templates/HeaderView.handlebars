@@ -1,7 +1,7 @@
 <div class="logo"><strong>Market</strong>Monitor</div>
 
 <ul class="nav">
-	<li class="item">Portfolios</li>
-	<li class="item">Trends</li>
-	<li class="item">Settings</li>		
+	{{#each navitems}}
+	<li class="item"><i class="fa {{this.icon}}"></i> {{this.title}}</li>
+	{{/each}}	
 </ul>

@@ -22,6 +22,7 @@
         height: 90px;
         margin-left: 260px;
         padding-left: 40px;
+        position: relative;
 
         li {
             display: inline-block;
@@ -31,6 +32,30 @@
             margin-right: 40px;
             color: white;
             cursor: pointer;
+
+            &:hover {
+                color: #e9f0fa;
+            }
+
+            &:after {
+                content: " ";
+                opacity: 0.6;
+                height: 45px;
+                margin-top: 22.5px;
+                width: 1px;
+                position: absolute;
+                margin-left: 22.5px;
+                background: #9eaec6;
+            }
+
+            &:last-child:after {
+                height: 0;
+                width: 0;
+            }
+
+            .fa {
+                margin-right: 5px;
+            }
         }
 
     }

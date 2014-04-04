@@ -4,6 +4,23 @@ var HeaderView = timber({
 
 	tagName: "header",
 
+	defaults: {
+		navitems: [
+			{
+				title: "Portfolios",
+				icon: "fa-folder-open"
+			},
+			{
+				title: "Trends",
+				icon: "fa-flask"
+			},
+			{
+				title: "Settings",
+				icon: "fa-cog"
+			}
+		]
+	},
+
 	init: function() {
 
 		this.render();
@@ -12,7 +29,9 @@ var HeaderView = timber({
 
 	render: function() {
 
-		this.$el.html(Handlebars.templates.HeaderView()); 
+		this.$el.html(Handlebars.templates.HeaderView({
+			navitems: this.navitems
+		})); 
 
 	}
 
