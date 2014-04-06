@@ -11,7 +11,7 @@ var Boot = timber({
 		$.ajaxSetup({
 			beforeSend: function(xhr, url, c) {
 			 	if(url.url.substr(0, 24) === 'http://finance.yahoo.com')
-			  		url.url = 'http://localhost:3001?url=' + url.url;
+			  		url.url = window.location.href.match(/^[a-zA-Z]+:\/\/([^\/^:]+)/)[0] + ':3001?url=' + url.url;
 			}
 		});
 
