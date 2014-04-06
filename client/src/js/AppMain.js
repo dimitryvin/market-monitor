@@ -29,6 +29,7 @@ var Boot = timber({
 
 $(function() {
 
-	new Boot().run();
+	var boot = new Boot();
+	boot.run();
 
 });

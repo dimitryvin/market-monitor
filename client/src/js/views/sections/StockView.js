@@ -5,7 +5,7 @@ var StockView = timber({
 	tagName: "div",
 
 	requires: [
-		'../../../templates/sections/StockView.handlebars this.template',
+		'../../../templates/sections/StockView.handlebars template',
 		'../../utilities/YahooAPI YahooAPI'
 	],
 
@@ -21,7 +21,7 @@ var StockView = timber({
 
 	render: function() {
 
-		this.$el.html(this.template({
+		this.$el.html(template({
 			
 		}));
 

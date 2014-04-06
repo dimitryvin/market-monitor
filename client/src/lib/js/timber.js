@@ -1,20 +1,795 @@
-var isNodeJS=!1;try{isNodeJS="undefined"!==typeof module&&"undefined"!==typeof module.exports&&"undefined"!==process&&"undefined"!==global}catch(d){}
-(function(l){function r(a){var c=a.lastIndexOf("/");a=a.substr(0,c);return""==a?a:a+"/"}function w(a,c){if(":"==a.charAt(0))return u.repoBase+"?v="+u.version+"&f="+a.substr(1);if("./"==a.substr(0,2))return a.substr(2);if("/"==a.charAt(0)||"http:"==a.substr(0,5)||"undefined"===typeof c)return a;var b=a.split("/"),f=c.split("/");for(""==f[f.length-1]&&f.pop();0<b.length&&".."==b[0];)b.shift(),f.pop();return f.join("/")+(0<f.length?"/":"")+b.join("/")}function q(a){var c=this;if("undefined"!==typeof this.deepProperties){for(var b in this.deepProperties)this[b]=
-JSON.parse(this.deepProperties[b]);delete this.deepProperties}b=k.mixin({},this["private"]||{});x.addPrivateScope(this,b);var f={},e={};this.trigger=function(a,c,b){if(a=f[a])for(var e in a)a[e].call(this,c,b)};this.on=function(a,b){if("change:"===a.substr(0,7)){var g=a.substr(7);"undefined"===typeof e[g]&&(e[g]=this[g]);Object.defineProperty(this,g,{enumerable:!0,configurable:!0,get:function(){return e[g]},set:function(b){e[g]=b;c.trigger(a,b,function(a){e[g]=a});return b}})}f[a]?f[a].push(b):f[a]=
-[b]};a||(a={});!0!=this.domless&&(a.el?a.el instanceof jQuery?(this.$el=a.el,this.el=a.el[0]):"undefined"!==typeof jQuery&&(this.$el=$(a.el),this.el=a.el):"undefined"!==typeof document&&(this.el=document.createElement(this.tagName?this.tagName:"div"),"undefined"!==typeof jQuery&&(this.$el=jQuery(this.el))),"undefined"!==typeof this.className&&(this.el.className=this.className),"undefined"!==typeof this.id&&(this.el.id=this.id));if("undefined"!==typeof this.events){var g=this.el,h=this.$el;if(!h)var l=
-!1,l=document.body.webkitMatchesSelector?"webkitMatchesSelector":document.body.mozMatchesSelector?"mozMatchesSelector":!1;var n=this.events,p;for(p in n)(function(){var a=n[p];if("string"==typeof a){var b=c[a];if(b)a=b;else{console.log('TRICKS: the event method "'+a+'" was not found on the trick',c);return}}var e=p.indexOf(" ");if(-1==e)b=p;else var b=p.substr(0,e),f=p.substr(e+1);if(h)h.on(b,f,function(b){a.call(c,b,this)});else g.addEventListener(b,function(b){if(l)for(var h=b.target,k=0;50>k;k++)if(h)if(-1==
-e||h[l](f)){b.currentTarget=h;a.call(c,b,h);break}else{if(h=h.parentNode,h===g)break}else break})})()}}function s(a,c){if(a&&a["extends"]){var b=a["extends"];delete a["extends"];if(b instanceof Array&&0<b.length){var f=b.shift();"string"===typeof f&&(f=getModule(k.endsWith(f,".js")?f:f+".js"));return f.extend(a,b)}"string"===typeof b&&(b=getModule(k.endsWith(b,".js")?b:b+".js"));return b.extend(a)}b=function(b){q.call(this,b);"undefined"!==typeof a&&a.singleton||"function"!==typeof this.init||this.init.apply(this,
-arguments)};b.extend=y;if(c)return b;b.prototype=Object.create(q.prototype);return v(b,a)}function z(a){var c;return function(b){if(c)return c;c=new a(b);"function"===typeof c.init&&c.init.apply(c,arguments);return c}}function v(a,c){var b,f,e,g;if("undefined"===typeof c)return a;if("undefined"!==typeof c.defaults){var m=c.defaults;delete c.defaults}"undefined"!==typeof a.prototype["private"]&&"undefined"!==typeof c["private"]&&k.mixin_passive(c["private"],a.prototype["private"]);k.mixin(a.prototype,
-c);if("undefined"!==typeof m){g="undefined"===typeof a.prototype.deepProperties?a.prototype.deepProperties={}:a.prototype.deepProperties;for(e in m)m[e]instanceof Object?g[e]=JSON.stringify(m[e]):a.prototype[e]=m[e];k.mixin(a.prototype,m)}if("undefined"!==typeof c.requires){var m="string"===typeof c.requires?[c.requires]:c.requires,l;for(l in m){g=m[l];b=g.indexOf(" ");f=-1==b?g:g.substr(0,b);g=g.substr(b+1);e="js";var n=f.length;k.endsWith(f,".js")?f=f.substr(0,n-3):k.endsWith(f,".hbs")?(f=f.substr(0,
-n-4),e="hbs"):k.endsWith(f,".handlebars")&&(f=f.substr(0,n-11),e="handlebars");var p=g.indexOf("."),n=void 0;-1==b?(k.endsWith(g,e)&&(g=g.substr(0,g.length-e.length-1)),g=g.substr(g.lastIndexOf("/")+1)):-1<p?(n=g.substr(0,p),g=g.substr(p+1)):n=g;b=f;f=n;g=":"===g.charAt(0)?g.substr(1):g;e=getModule(b+"."+e);"this"==f?a.prototype[g]=e:"undefined"===typeof h.globalScope[g]&&(h.globalScope[g]=e)}delete c.requires}c.singleton&&(a=z(a));return h.latestClass=a}function y(a,c){var b=s(a,!0);A(b,this);if("undefined"!==
-typeof c)for(var f=0;f<c.length;f++){var e=c[f];"string"===typeof e&&(e=getModule(k.endsWith(e,".js")?e:e+".js"));k.mixin_passive(b.prototype,e);if("undefined"!==typeof e.prototype.defaults){var e="undefined"===typeof b.prototype.deepProperties?b.prototype.deepProperties={}:b.prototype.deepProperties,g;for(g in defaults)defaults[g]instanceof Object&&"undefined"===typeof e[g]&&(e[g]=JSON.stringify(defaults[g]))}}return v(b,a)}var u={version:1,repoBase:"http://timber.io/repo/"},k={mixin:function(a,
-c){if("function"==typeof c&&"object"==typeof c.prototype)return k.mixin(a,c.prototype);for(var b in c)a[b]=c[b];return a},mixin_passive:function(a,c){if("function"==typeof c&&"object"==typeof c.prototype)return k.mixin_passive(a,c.prototype);for(var b in c)"undefined"===typeof a[b]&&(a[b]=c[b]);return a},endsWith:function(a,c){return a.substr(a.length-c.length)===c}};Function.prototype.bind=function(a){var c=this;return function(){return c.apply(a,arguments)}};var h={cachedFiles:{},globalScope:l};
-if(isNodeJS){h.base=r(module.parent.filename);var B=function(a,c){var b=h.httpsync;if("undefined"===typeof b)try{b=h.httpsync=require("httpsync")}catch(f){throw"\n\n\n\n===========================================================\n\nTimber requires the package httpsync, run the command: \n\n\tnpm -g install httpsync\n\n===========================================================\n\n\n\n";}var b=b.get(a).end().data.toString(),e={console:console,setTimeout:setTimeout,clearTimeout:clearTimeout,require:require,
-process:process,Buffer:Buffer,timber:timber,exports:exports,module:{exports:{__undefined:!0}}};c=r(a);e.getModule=function(a){return h.getModule_real(a,c)};require("vm").runInNewContext(b,e,a);return"undefined"===typeof e.module.exports||e.module.exports.__undefined?e.module:e.module.exports}}h.getModule_real=function(a,c){var b=w(a,c),f=a.substr(a.lastIndexOf("/")+1);if("undefined"!==typeof h.cachedFiles[f])return h.cachedFiles[f];if(isNodeJS){var e=h.base,g=h.latestClass;h.base=r(b);var m;if("http:"===
-b.substr(0,5))m=B(b,c);else try{m=require(b)}catch(l){b=a.lastIndexOf("."),-1<b&&(a=a.substr(0,b)),m=require(a)}"object"===typeof m&&0===Object.keys(m).length&&(m=h.latestClass);h.latestClass=g;h.base=e;return h.cachedFiles[f]=m}e=new XMLHttpRequest;e.open("GET",b,!1);e.send("");if(k.endsWith(b,".hbs")||k.endsWith(b,".handlebars"))return b=h.getModule_real(":handlebars.js",""),h.cachedFiles[f]=b.compile(e.responseText);c=r(b);b='window.__timberRequire = function(pkgEnv) {                    \t\t\t\t\tfunction getModule(filename) {\t\t\t\t\t\treturn pkgEnv.getModule_real(filename, "'+
-c+'");\t\t\t\t\t}                    \t\t\t\t\tvar module = { exports: { __undefined: true } };                    \t\t\t\t\tvar prevLatestClass = pkgEnv.latestClass;\t\t\t\t\tdelete pkgEnv.latestClass;\t\t\t\t\tvar prevBase = pkgEnv.base;                    /*var prevGlobalScope = pkgEnv.globalScope;*/                    /*pkgEnv.globalScope = {};*/                    pkgEnv.base = "'+c+'";                    \t\t\t\t\t'+e.responseText+';                    \t\t\t\t\tvar thisClass = pkgEnv.latestClass;\t\t\t\t\tpkgEnv.latestClass = prevLatestClass;\t\t\t\t\tpkgEnv.base = prevBase;                                        /*for(var name in pkgEnv.globalScope)                        eval("var " + name + "=" + "pkgEnv.globalScope[\'" + name + "\']");                    pkgEnv.globalScope = prevGlobalScope;*/                    \t\t\t\t\tvar exports = module.exports;\t\t\t\t\tdelete module.exports;\t\t\t\t\tif(typeof exports !== "undefined" && !exports.__undefined) {\t\t\t\t\t\treturn exports;\t\t\t\t\t}else if(Object.keys(module).length > 0) {\t\t\t\t\t\treturn module;\t\t\t\t\t}else{\t\t\t\t\t\treturn thisClass;\t\t\t\t\t}\t\t\t\t}';
-e=document.createElement("script");e.type="text/javascript";e.text=b;document.getElementsByTagName("head")[0].appendChild(e);return h.cachedFiles[f]=window.__timberRequire(h)};l.getModule=function(a){return h.getModule_real(a,"undefined"===typeof h.base?r(document.currentScript.src):h.base)};"undefined"===typeof l.require&&(l.require=l.getModule);var C=function(){var a={},c=this._super,b;for(b in c)"function"==typeof c[b]&&"constructor"!=b&&(a[b]=t(c[b],this,c._super));a.constructor=t(c.constructor,
-this,c._super);return a},t=function(a,c,b){return function(){".super";c=c?c:this;var f=c._super;c._super=b;var e=a.apply(c,arguments);c._super=f;return e}},A=function(a,c){a.prototype=Object.create(c.prototype);a.prototype._super=c.prototype;Object.defineProperty(a.prototype,"super",{enumerable:!1,configurable:!0,set:function(a){},get:C});var b=/\.super/,f;for(f in c.prototype)"function"==typeof c.prototype[f]&&b.test(c.prototype[f].toString())&&(a.prototype[f]=t(c.prototype[f],void 0,c.prototype._super));
-a.prototype.constructor=a},x={cache:{},hasPrivateScope:function(a){var c=a.toString();a=a.name+":"+a.length+":"+c.length;return"undefined"!==typeof this.cache[a]?this.cache[a]:this.cache[a]=-1<c.indexOf("this.private")},addPrivateScope:function(a,c){"undefined"===typeof c&&(c={});var b=this;Object.defineProperty(a,"private",{enumerable:!0,configurable:!0,set:function(a){},get:function(){return b.hasPrivateScope(arguments.callee.caller)?c:void 0}})}};q.prototype.extend=function(){for(var a=0;a<arguments.length;a++)k.mixin(Object.getPrototypeOf(this),
-arguments[a])};q.prototype.get=function(a){return this[a]};q.prototype.set=function(a,c){this[a]=c};q.prototype.delay=function(a){var c={},b=this,f=function(c){return function(){setTimeout(function(){b[c].apply(b,arguments)},a);return b}},e;for(e in this)"function"===typeof this[e]&&(c[e]=f(e));return c};l.timber=s;"undefined"!==typeof module&&"undefined"!==typeof module.exports&&(module.exports=s);"function"===typeof l.define&&"function"===typeof l.define.amd&&l.define("timber",[],function(){return s})})(isNodeJS?
-global:window);
+var isNodeJS = false;
+try{
+    isNodeJS = typeof module !== 'undefined' && typeof module.exports !== 'undefined' && process !== 'undefined' && global !== 'undefined';
+}catch(d)
+{}
+
+(function(globalScope) {
+
+	var settings = {
+		version: 1,
+		repoBase: 'http://timber.io/repo/'
+	};
+
+	/* includes useful methods like mixin */
+	var helperMethods = {
+
+	/* combine attributes of obj into self */
+
+	mixin: function(self, obj) {
+		// force prototype to be mixin'd if given instead of object
+		if(typeof obj == 'function' && typeof obj.prototype == 'object')
+			return helperMethods.mixin(self, obj.prototype);
+		for(var prop in obj)
+			self[prop] = obj[prop];
+		// chain game
+		return self;
+	},
+
+	/* combine attributes of obj into self
+	 * but do not overwrite already existing
+	 * attributes.
+	 */
+
+	mixin_passive: function(self, obj) {
+		// force prototype to be mixin'd if given instead of object
+		if(typeof obj == 'function' && typeof obj.prototype == 'object')
+			return helperMethods.mixin_passive(self, obj.prototype);
+		for(var prop in obj)
+			if(typeof self[prop] === 'undefined')
+				self[prop] = obj[prop];
+		// chain game
+		return self;
+	},
+
+	/* determines if given string ends with
+	 * later string
+	 */
+
+	endsWith: function(haystack, needle) {
+		return haystack.substr(haystack.length - needle.length) === needle;
+	}
+
+}
+
+Function.prototype.bind = function(obj) {
+     var fn = this;
+     return function() {
+          return fn.apply(obj, arguments);
+     }
+}
+
+	/* handles syncronous package management */
+	function moduleSelector(sel) {
+	// split string into 2 parts, module name and where to store the module
+	var space = sel.indexOf(' ');
+	var moduleName = space == -1 ? sel : sel.substr(0, space);
+	var saveAt = sel.substr(space + 1);
+	// remove and find extension
+	var extension = 'js';
+	var length = moduleName.length;
+	if(helperMethods.endsWith(moduleName, '.js'))
+		moduleName = moduleName.substr(0, length-3);
+	else if(helperMethods.endsWith(moduleName, '.hbs')) {
+		moduleName = moduleName.substr(0, length-4);
+        extension = 'hbs';
+    }else if(helperMethods.endsWith(moduleName, '.handlebars')) {
+		moduleName = moduleName.substr(0, length-11);
+        extension = 'handlebars';
+    }
+
+	// refine exactly where we are storing module
+	var dot = saveAt.indexOf('.');
+	var saveLoc;
+	if(space == -1) {
+        if(helperMethods.endsWith(saveAt, extension))
+            saveAt = saveAt.substr(0, saveAt.length - extension.length - 1);
+        saveAt = baseName(saveAt);
+	}else if(dot > -1) {
+		saveLoc = saveAt.substr(0, dot);
+		saveAt = saveAt.substr(dot + 1);
+	}else{
+		saveLoc = saveAt;
+	}
+    // return the selector
+	return {
+		name: moduleName,
+		saveParent: saveLoc,
+		extension: extension,
+        variableName: saveAt.charAt(0) === ':' ? saveAt.substr(1) : saveAt
+	};
+}
+
+function basePath(path) {
+	var slash = path.lastIndexOf('/');
+	var base = path.substr(0, slash);
+	return base == '' ? base : base + '/';
+}
+
+function baseName(str) {
+	return str.substr(str.lastIndexOf('/')+1);
+}
+
+function resolvePath(filename, base) {
+    // fetch from web
+    if(filename.charAt(0) == ':')
+		return settings.repoBase + '?v=' + settings.version + '&f=' + filename.substr(1);
+    // root it up
+	if(filename.charAt(0) === '/' || filename.substr(0, 5) === 'http:')
+		return filename;
+    // root from index.html
+	if(filename.substr(0, 2) === '~/')
+		return filename.substr(2);
+    // macro
+    if(typeof settings.paths !== 'undefined') {
+        var slash = filename.indexOf('/');
+        var front = filename.substr(0, slash);
+        var path = settings.paths[front];
+        if(typeof path !== 'undefined') {
+            if(!helperMethods.endsWith(path, '/'))
+                path = path + '/';
+            return path + filename.substr(slash + 1);   
+        }
+    }
+    // no base provided
+    if(typeof base === 'undefined')
+        return filename;
+	var filename_parts = filename.split('/');
+	var basename_parts = base.split('/');
+	if(basename_parts[basename_parts.length-1] == '')
+		basename_parts.pop();
+	while(filename_parts.length > 0 && filename_parts[0] == '..') {
+		filename_parts.shift();
+		basename_parts.pop();
+	}
+	return basename_parts.join('/') + (basename_parts.length > 0 ? '/' : '') + filename_parts.join('/');
+}
+
+var pkgEnv = {
+    cachedFiles: {},
+    globalScope: globalScope
+};
+
+function getBasePath() {
+    return typeof pkgEnv.base === 'undefined' && document.currentScript !== null ? basePath(document.currentScript.src) : pkgEnv.base;
+}
+
+trick.addPath = function(key, filename) {
+    var fullPath = resolvePath( filename, getBasePath() );
+    if(typeof settings.paths === 'undefined')
+        settings.paths = {};
+    settings.paths[key] = fullPath;
+}
+
+if(isNodeJS) {
+
+    // node needs the default base for requiring timber classes to be the base of where timber was initially included
+    pkgEnv.base = basePath(module.parent.filename);
+
+    // we need a way to fetch modules over the internet
+    function webRequire(fullPath, base) {
+        var httpsync = pkgEnv.httpsync;
+        if(typeof httpsync === 'undefined') {
+            try{
+                httpsync = pkgEnv.httpsync = require('httpsync');
+            }catch(e) {
+                throw "\n\n\n\n===========================================================\n\nTimber requires the package httpsync, run the command: \n\n\tnpm -g install httpsync\n\n===========================================================\n\n\n\n";
+            }
+        }
+        var code = httpsync.get(fullPath).end().data.toString();
+        var sandbox = { console: console, setTimeout: setTimeout, clearTimeout: clearTimeout, require: require, process: process, Buffer: Buffer, timber: timber, exports: exports };
+        sandbox.module = { exports: { __undefined: true } };
+        var base = basePath(fullPath);
+        sandbox.getModule = function(filename) { return pkgEnv.getModule_real(filename, base) };
+        require('vm').runInNewContext(code, sandbox, fullPath);
+        return typeof sandbox.module.exports !== 'undefined' && !sandbox.module.exports.__undefined ? sandbox.module.exports : sandbox.module;
+    }
+
+}
+    
+pkgEnv.getModule_real = function(filename, base) {
+
+    // find the file
+	var fullPath = resolvePath(filename, base);
+	var basename = baseName(filename);
+    
+    // use cache to get file
+	if(typeof pkgEnv.cachedFiles[basename] !== 'undefined')
+		return pkgEnv.cachedFiles[basename];
+
+    /* LOAD IN THE FILE FOR NODEJS */
+    
+    // special class loading for node
+    if(isNodeJS) {
+        var oldBase = pkgEnv.base;
+        var oldLatestClass = pkgEnv.latestClass;
+        pkgEnv.base = basePath(fullPath);
+        var mod;
+        // this package must be downloaded from the web
+        if(fullPath.substr(0, 5) === 'http:') {
+            mod = webRequire(fullPath, base);
+        // laad package in
+        }else{
+            try{
+                mod = require(fullPath);            
+            }catch(e) { // couldnt find module, assume its a node module and include it
+                var dotPos = filename.lastIndexOf('.');
+                if(dotPos > -1)
+                    filename = filename.substr(0, dotPos);
+                mod = require(filename);
+            }
+        }
+        // extract the fetched module and return it, also cache it
+        if(typeof mod === 'object' && Object.keys(mod).length === 0)
+            mod = pkgEnv.latestClass;
+        pkgEnv.latestClass = oldLatestClass;
+        pkgEnv.base = oldBase;
+        return pkgEnv.cachedFiles[basename] = mod;
+    }
+
+    /* LOAD IN THE FILE FOR WEB */
+
+	// open and send a synchronous request
+	var xhrObj = new XMLHttpRequest();
+	xhrObj.open('GET', fullPath, false);
+	xhrObj.send('');
+
+    // handle handlebars
+    if(helperMethods.endsWith(fullPath, '.hbs') || helperMethods.endsWith(fullPath, '.handlebars')) {
+        var handlebars = pkgEnv.getModule_real(':handlebars.js', '');
+        return pkgEnv.cachedFiles[basename] = handlebars.compile(xhrObj.responseText);
+    }
+
+    return pkgEnv.cachedFiles[basename] = runInCurrentContext(xhrObj.responseText, fullPath);
+}
+
+function runInCurrentContext(code, fullPath) {
+
+    // this is the virtual base of where the code is supposed to be running from
+	var base = basePath(fullPath);
+
+    // create new "simulated reference" environment
+    function getModule(filename) {
+        return pkgEnv.getModule_real(filename, base);
+    }
+    var module = { exports: { __undefined: true } };
+    var prevLatestClass = pkgEnv.latestClass;
+    delete pkgEnv.latestClass;
+    var prevBase = pkgEnv.base;
+    pkgEnv.base = base;
+    var prevGlobalScope = pkgEnv.globalScope;
+    pkgEnv.globalScope = {};
+    var exports = true;
+
+    // run the encapsulated code
+    try{
+        eval(code);
+    }catch(e) {
+        var line = e.stack.match(/>:([0-9]*):/);
+        line = line.length > 0 ? " on line " + line.pop() : "";
+        e.message = e.message + ' in file ' + fullPath + line;
+        throw e;
+    }
+        
+    // replace the global variables timber created in the above eval with psuedo global ones
+    for(var name in pkgEnv.globalScope) {
+        if(name[0] === "!") {
+            globalScope[name.substr(1)] = pkgEnv.globalScope[name];
+        }else{
+            eval("var " + name + "=" + "pkgEnv.globalScope['" + name + "']");
+        }
+    }
+
+    // restore previous "reference" environment
+    pkgEnv.globalScope = prevGlobalScope;
+    var thisClass = pkgEnv.latestClass;
+    pkgEnv.latestClass = prevLatestClass;
+    pkgEnv.base = prevBase;
+
+    // determine where the module is within the eval and return it
+    exports = module.exports;
+    delete module.exports;
+    if(typeof exports !== "undefined" && !exports.__undefined) {
+        return exports;
+    }else if(Object.keys(module).length > 0) {
+        return module;
+    }else{
+        return thisClass;
+    }
+    
+}
+
+globalScope.getModule = function(filename) {
+	return pkgEnv.getModule_real(filename, getBasePath());
+}
+
+if(typeof globalScope.require === 'undefined')
+    globalScope.require = globalScope.getModule;
+
+
+	/* classExtender takes a child function and a parent function, 
+	 * and makes the child extend the parent, along with this.super
+	 * support
+	 */
+	var generateSuper = function() {
+
+	// this object will be populated with methods of the superclass bound to the child this scope
+	var simulatedSuperInstance = {};
+
+	// pointer to super
+	var atInvokeSuper = this._super;
+
+	// bind methods of the super to this object
+	for(var prop in atInvokeSuper)
+		if(typeof atInvokeSuper[prop] == 'function' && prop != 'constructor')
+			simulatedSuperInstance[prop] = bind_for_super_propagation(atInvokeSuper[prop], this, atInvokeSuper._super);
+	// manually pull the constructor from the superclass, it seems that for the top of inheritence doesnt get listed when looping props
+	simulatedSuperInstance['constructor'] = bind_for_super_propagation(atInvokeSuper['constructor'], this, atInvokeSuper._super);
+
+	// return the simulated super
+	return simulatedSuperInstance;
+
+}
+
+// works the same as regular js bind, except it propagates the _super attribute once
+
+var bind_for_super_propagation = function(fn, scope, tempParentProto) {
+	return function() {
+		'.super'; // we need further children to proxy this method too
+		scope = scope ? scope : this;
+		var atInvokeSuper = scope._super;
+		scope._super = tempParentProto;
+		var ret = fn.apply(scope, arguments);
+		scope._super = atInvokeSuper;
+		return ret;
+	}
+}
+
+// allow inheritence
+
+var classExtender = function(newClass, parent) {
+
+	 // inherit from prototype
+     newClass.prototype = Object.create(parent.prototype);
+
+     // the child's prototype must know where its superclass protoype is so that the super method knows where to look for methods
+     newClass.prototype._super = parent.prototype;
+
+     // the child prototype needs the super method to access methods of the super class
+     Object.defineProperty(newClass.prototype, 'super', {
+		enumerable: false,
+		configurable: true,
+		set: function(data) {},
+		get: generateSuper
+	 });
+
+     // when the subclass inherits a method from the superclass where the method uses the super method, super in this case must point to the superclass's superclass, we fix this by defining these methods directly on the subclass to essensially proxy call super so that the value of ._super propagates correctly
+     var needsProxy = /\.super/;
+     for(var prop in parent.prototype)
+     	if( typeof parent.prototype[prop] == 'function' && needsProxy.test(parent.prototype[prop].toString()) )
+     		newClass.prototype[prop] = bind_for_super_propagation(parent.prototype[prop], undefined, parent.prototype._super);
+
+     // fix wrong constructor
+     newClass.prototype.constructor = newClass;
+     
+}
+
+
+	/* When psased a function, it performs lexical analysis, used
+	 * for determining if that function has private scope
+	 */
+	var fn_parser = {
+
+	cache: {},
+
+	hasPrivateScope: function(fn) {
+		var fn_str = fn.toString();
+		var signature = fn.name + ':' + fn.length + ':' + fn_str.length;
+		if(typeof this.cache[signature] !== 'undefined')
+			return this.cache[signature];
+		else
+			return this.cache[signature] = fn_str.indexOf('this.private') > -1;
+	},
+
+	addPrivateScope: function(obj, privateScope) {
+
+		if(typeof privateScope === 'undefined')
+			privateScope = {};
+		var self = this;
+
+		Object.defineProperty(obj, 'private', {
+		    enumerable: true,
+		    configurable: true,
+		    set: function(data) {},
+		    get: function() {
+		        return self.hasPrivateScope(arguments.callee.caller) ? privateScope : undefined;
+		    }
+		});
+
+	}
+
+};
+
+
+	/* The base class for new timber classes, with core functionality
+	 * such as binding, delay, el/$el creation, etc.
+	 */
+	function tricks(params) {
+
+	var self = this;
+
+        // give this timber deep copies of its defaults
+        if(typeof this.deepProperties !== 'undefined') {
+	    for(var prop in this.deepProperties)
+		this[prop] = JSON.parse(this.deepProperties[prop]);
+	    delete this.deepProperties;
+	}
+   
+	// give this timber private scope
+	var privateScope = helperMethods.mixin({}, this.private || {});
+	fn_parser.addPrivateScope(this, privateScope);
+
+	/* EVENT MANAGEMENT */
+
+	var propChangeCallbacks = {};
+	var realData = {};
+
+	this.trigger = function(name, value, callback) {
+		var callbacks = propChangeCallbacks[name];
+		if(callbacks)
+			for(var i in callbacks)
+				callbacks[i].call(this, value, callback);
+	}
+
+	this.on = function(key, callback) {
+		// if event is for property, cause assignment to trigger change
+		if(key.substr(0, 7) === 'change:') {
+			var varname = key.substr(7);
+			if(typeof realData[varname] === 'undefined')
+				realData[varname] = this[varname];
+			Object.defineProperty(this, varname, {
+			  enumerable: true,
+			  configurable: true,
+			  get: function() { return realData[varname] },
+			  set: function(data) {
+			  	realData[varname] = data;
+			  	self.trigger(key, data, function(d) { realData[varname] = d });
+			  	return data;
+			  }
+			});
+		}
+		// add event
+		if(!propChangeCallbacks[key])
+			propChangeCallbacks[key] = [ callback ];
+		else
+			propChangeCallbacks[key].push(callback);
+	}
+
+	// create objects if none were given
+	if(!params)
+		params = {};
+
+	// do actions only relavent if tricks was inherited with the dom property enabled
+	if(this.domless != true) {
+
+        var jQuery = globalScope.jQuery || globalScope.$;
+        
+		// if the user gave us a selector use that one
+		if(params.el) {
+			// user given selector is jQuery selector
+			if(params.el instanceof jQuery) {
+				this.$el = params.el;
+				this.el = params.el[0];
+			// user given selector is not jquery
+			}else if(typeof jQuery !== 'undefined') {
+				this.$el = $(params.el);
+				this.el = params.el;
+			}
+		// user gave us no selector so make one
+		}else{
+			if(typeof document !== 'undefined') {
+				this.el = document.createElement(this.tagName ? this.tagName : 'div');
+				if(typeof jQuery !== 'undefined')
+					this.$el = jQuery(this.el);
+			}
+		}
+
+		if(typeof this.className !== 'undefined')
+			this.el.className = this.className;
+
+		if(typeof this.id !== 'undefined')
+			this.el.id = this.id;
+
+
+
+	}
+
+	/* handle events for the trick */
+
+	if(typeof this.events !== 'undefined') {
+		// determine method of adding the events
+		var el = this.el;
+		var $el = this.$el;
+		// fix for webkitMatchesSelector
+		if(!$el) {
+			var matchesSelector = false;
+			if(document.body.webkitMatchesSelector)
+				var matchesSelector = 'webkitMatchesSelector';
+			else if(document.body.mozMatchesSelector)
+				var matchesSelector = 'mozMatchesSelector';
+			else
+				var matchesSelector = false;
+		}
+		// add eventts
+		var events = this.events;
+		for(var e in events) {
+			// this preserves variables
+			(function(){
+				// grab a direct pointer to the callback we will invoke for this event
+				var callback = events[e];
+				if(typeof callback == 'string') {
+					var callback_checking = self[callback];
+					if(!callback_checking) {
+						console.log('TRICKS: the event method "' + callback + '" was not found on the trick', self);
+						return;
+					}else{
+						callback = callback_checking;
+					}
+				}
+				// get the event name and selector from the prop we were given
+				var space = e.indexOf(' ');
+				if(space == -1) {
+					var eventName = e;
+				}else{
+					var eventName = e.substr(0, space);
+					var eventSelector = e.substr(space + 1);
+				}
+				// bind the event with jQuery if its available
+				if($el) {
+					$el.on(eventName, eventSelector, function(e) {
+						callback.call(self, e, this);
+					});
+				// no jquery access, will have to do this old school
+				}else{
+					el.addEventListener(eventName, function(e) {
+						// abort if we have no way to check matches on something
+						if(!matchesSelector)
+							return;
+						// only allow 50 iterations incase something wacky happens
+						var node = e.target;
+						for(var i = 0; i < 50; i++) {
+							if(!node) {
+								break;
+							}else if(space == -1 || node[matchesSelector](eventSelector)) {
+								e.currentTarget = node; 
+								callback.call(self, e, node);
+								break;
+							}else{
+								node = node.parentNode;
+								if(node === el)
+									break;
+							}
+						}
+					});
+				}
+			})();
+		}
+	}
+
+}
+
+/* take another object or function and steal its functions/prototypes and dump them into our prototype */
+
+tricks.prototype.extend = function(/* arg1, arg2, ... */) {
+	for(var i = 0; i < arguments.length; i++)
+		helperMethods.mixin(Object.getPrototypeOf(this), arguments[i]);
+}
+
+/* PROPERTY MUTATION */
+
+tricks.prototype.get = function(key) {
+	return this[key];
+}
+
+tricks.prototype.set = function(key, value) {
+	this[key] = value;
+}
+
+tricks.prototype.delay = function(time) {
+	var dummy = {};
+	var self = this;
+	var fn = function(name) {
+		return function() {
+			setTimeout(function(){
+				self[name].apply(self, arguments);
+			}, time);
+			return self;
+		}
+	}
+	for(var prop in this)
+		if(typeof this[prop] === 'function')
+		dummy[prop] = fn(prop);
+	return dummy;
+}
+
+
+	/* returns the "timber" method exposed in the window below, used to create new timbers */
+	function trick(trickProps, isExtending) {
+
+	// if this trick extends another trick(s) perform parent.extend(trickProps), instead of building new trick
+	if(trickProps && trickProps['extends']) {
+		var extending = trickProps['extends'];
+		delete trickProps['extends'];
+		if(extending instanceof Array && extending.length > 0) {
+			var firstClass = extending.shift();
+			if(typeof firstClass === 'string')
+				firstClass = getModule(helperMethods.endsWith(firstClass, '.js') ? firstClass : firstClass + '.js');
+			return firstClass.extend(trickProps, extending);
+		}
+		else{
+			if(typeof extending === 'string')
+				extending = getModule(helperMethods.endsWith(extending, '.js') ? extending : extending + '.js');
+			return extending.extend(trickProps);
+		}
+	}
+
+	// create constructor for the new trick
+	var newTrick;
+	newTrick = function(params) {
+		// call the setupTrick method
+		tricks.call(this, params);
+		// invoke "init" constructor unless we're a singleton
+		if( (typeof trickProps === 'undefined' || !trickProps.singleton) && typeof this.init === 'function')
+			this.init.apply(this, arguments);
+	}
+
+	// give the trick .extend() like functionality
+	newTrick.extend = extendTrick;
+
+	// optimization, if trick invoked by extendTrick, the below will be overwritten anyway so dont run it
+	if(isExtending)
+        return newTrick;
+
+	// give prototype for this function access to the tricks API
+	newTrick.prototype = Object.create(tricks.prototype);
+
+	// apply trickProps to the trick
+	return applyTrickProps(newTrick, trickProps);
+
+}
+
+/* allow changing settings */
+trick.config = function(givenSettings) {
+    helperMethods.mixin(settings, givenSettings);
+}
+
+/* takes a timber and returns a singleton instance */
+function makeSingletonInstace(newTrick) {
+	var singleton;
+	return function(params) {
+		if(singleton)
+			return singleton;
+		singleton = new newTrick(params);
+		if(typeof singleton.init === 'function')
+			singleton.init.apply(singleton, arguments);
+		return singleton;
+	}
+}
+
+/* takes trickProps object and deflates it onto the trick prototype */
+function applyTrickProps(newTrick, trickProps) {
+
+	if(typeof trickProps === 'undefined')
+		return newTrick;
+
+	// rip out defaults
+	if(typeof trickProps.defaults !== 'undefined') {
+		var defaults = trickProps.defaults;
+		delete trickProps.defaults;
+	}
+
+	// if newTrick already has private variables, combine them into new privates given
+	if(typeof newTrick.prototype.private !== 'undefined' && typeof trickProps.private !== 'undefined') {
+		helperMethods.mixin_passive(trickProps.private, newTrick.prototype.private);
+	}
+
+	// set all properties
+	helperMethods.mixin(newTrick.prototype, trickProps);
+
+	// now set defaults and make a dump of objects to deep copy
+	if(typeof defaults !== 'undefined') {
+		if(typeof newTrick.prototype.deepProperties === 'undefined')
+		    var deepProperties = newTrick.prototype.deepProperties = {};
+		else
+		    var deepProperties = newTrick.prototype.deepProperties;
+		for(var prop in defaults) {
+		    if(defaults[prop] instanceof Object)
+			deepProperties[prop] = JSON.stringify(defaults[prop]);
+		    else
+			newTrick.prototype[prop] = defaults[prop];
+		}
+		helperMethods.mixin(newTrick.prototype, defaults);
+	}
+
+	// setup requirements
+	if(typeof trickProps.requires !== 'undefined') {
+		var reqList = typeof trickProps.requires === 'string' ? [trickProps.requires] : trickProps.requires;
+		for(var i in reqList) {
+			var moduleDetails = moduleSelector(reqList[i]);
+			var mod = getModule(moduleDetails.name + '.' + moduleDetails.extension);
+			// store module
+			if(moduleDetails.saveParent === 'this')
+				newTrick.prototype[moduleDetails.variableName] = mod;
+            else if(moduleDetails.saveParent === 'window' || pkgEnv.globalScope === globalScope)
+                globalScope[moduleDetails.variableName] = mod;
+			else{
+                pkgEnv.globalScope['!' + moduleDetails.variableName] = globalScope[moduleDetails.variableName]; // temporarily overwrite global scope
+                globalScope[moduleDetails.variableName] = mod;
+		        pkgEnv.globalScope[moduleDetails.variableName] = mod;
+            }
+		}
+		delete trickProps.requires;
+	}
+
+	// generate singleton
+	if(trickProps.singleton)
+		newTrick = makeSingletonInstace(newTrick);
+
+	// store class on window
+	pkgEnv.latestClass = newTrick;
+    
+	return newTrick;
+
+}
+
+/* allows for extending another trick */
+
+function extendTrick(trickProps, mixins) { /* this = some trick function */
+
+	// the class we inherit from directly is the first item in the array
+	var newClass = trick(trickProps, true);
+	classExtender(newClass, this);
+
+	// mixin the other extendees
+	if(typeof mixins !== 'undefined')
+		for(var i = 0; i < mixins.length; i++) {
+			var extending = mixins[i];
+			if(typeof extending === 'string')
+				extending = getModule(helperMethods.endsWith(extending, '.js') ? extending : extending + '.js');
+            helperMethods.mixin_passive(newClass.prototype, extending);
+		    // fix deep copy defaults
+		    if(typeof extending.prototype.defaults !== 'undefined') {
+			    // determine where on prototype to store deep vars
+			    if(typeof newClass.prototype.deepProperties === 'undefined')
+				    var deepProperties = newClass.prototype.deepProperties = {};
+			    else
+				    var deepProperties = newClass.prototype.deepProperties;
+			    // add deep vars to prototype
+			    for(var prop in defaults)
+				    if(defaults[prop] instanceof Object && typeof deepProperties[prop] === 'undefined')
+				        deepProperties[prop] = JSON.stringify(defaults[prop]);
+				    
+			}
+				    
+		}
+
+	// only after everything should we apply trick props to our new class
+	return applyTrickProps(newClass, trickProps);
+}
+
+
+	/* expose the timber builder to the global object */
+    globalScope.timber = trick;
+
+    /* expot to express */
+    if( typeof module !== 'undefined' && typeof module.exports !== 'undefined' )
+        module.exports = trick;
+    
+	/* expose timber to AMD */
+	if (typeof globalScope.define === "function" && typeof globalScope.define.amd === "function") {
+	  globalScope.define("timber", [], function() {
+	    return trick;
+	  });
+	}
+
+})( isNodeJS ? global : window );
