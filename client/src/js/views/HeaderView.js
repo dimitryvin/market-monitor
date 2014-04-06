@@ -4,6 +4,10 @@ var HeaderView = timber({
 
 	tagName: "header",
 
+	requires: [
+		'../../templates/HeaderView.handlebars template'
+	],
+
 	defaults: {
 		navitems: [
 			{
@@ -29,7 +33,7 @@ var HeaderView = timber({
 
 	render: function() {
 
-		this.$el.html(Handlebars.templates.HeaderView({
+		this.$el.html(template({
 			navitems: this.navitems
 		})); 
 

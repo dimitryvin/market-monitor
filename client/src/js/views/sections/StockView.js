@@ -4,9 +4,16 @@ var StockView = timber({
 
 	tagName: "div",
 
+	requires: [
+		'../../../templates/sections/StockView.handlebars this.template',
+		'../../utilities/YahooAPI YahooAPI'
+	],
+
 	init: function() {
 
-		YahooAPI().getStocks();
+		YahooAPI().getStock("MSFT").done(function(data) {
+			console.log(data);
+		});
 
 		this.render();
 
@@ -14,9 +21,9 @@ var StockView = timber({
 
 	render: function() {
 
-		/*this.$el.html(Handlebars.templates['sections/StockView']({
-			securities: secs
-		})); */
+		this.$el.html(this.template({
+			
+		}));
 
 	}
 

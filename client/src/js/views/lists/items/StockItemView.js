@@ -13,8 +13,6 @@ var StockItemView = timber({
 
 	render: function() {
 
-		console.log(this.model.getData());
-
 		this.$el.html(Handlebars.templates['lists/items/StockItemView']({ data: this.model.getData() }));
 
 	}

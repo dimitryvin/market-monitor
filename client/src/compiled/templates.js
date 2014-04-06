@@ -67,6 +67,45 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
   return buffer;
   });
+templates['sections/StockView'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<div class=\"stock-info\">\r\n	<div class=\"price\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.price)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n	<div class=\"stat\">Range: "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.low)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + " - "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.high)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n	<div class=\"stat\">52 week: "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1['52_low'])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + " - "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1['52_hight'])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n	<div class=\"stat\">Open: "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.open)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n	<div class=\"stat\">Vol / Avg: "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.vol)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + " / "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.avg_vol)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n	<div class=\"stat\">Mkt Cap: "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.cap)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n	<div class=\"stat\">P/E: "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.pe)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n	<div class=\"stat\">Div/yield: "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.dividend)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + " / "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.div_yield)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n	<div class=\"stat\">EPS: "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.eps)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n	<div class=\"stat\">Shares: "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.so)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n	<div class=\"stat\">Beta: "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.beta)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n</div>";
+  return buffer;
+  });
 templates['SideView'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};

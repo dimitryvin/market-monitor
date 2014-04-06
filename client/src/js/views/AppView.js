@@ -2,13 +2,20 @@ var AppView = timber({
 
     className: 'app-container',
 
+    requires: [
+        '../../templates/AppView.handlebars template',
+        'SideView SideView',
+        'HeaderView HeaderView',
+        'sections/StockView StockView'
+    ],
+
     init: function() {
         this.render();
     },
 
     render: function() {
 
-        this.$el.html(Handlebars.templates.AppView()); 
+        this.$el.html(template()); 
 
         var headerView = new HeaderView();
         var sideView = new SideView();
@@ -18,8 +25,8 @@ var AppView = timber({
 
 
         //TEMP
-        var portView = new PortfolioView();
-        this.setView(portView);
+        var stockView = new StockView();
+        this.setView(stockView);
 
     },
 

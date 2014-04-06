@@ -1,5 +1,9 @@
 var SideView = timber({
 
+	requires: [
+		'../../templates/SideView.handlebars template'
+	],
+
 	className: 'side-view',
 
 	tagName: "div",
@@ -12,7 +16,7 @@ var SideView = timber({
 
 	render: function() {
 
-		this.$el.html(Handlebars.templates.SideView()); 
+		this.$el.html(template()); 
 
 	}
 
