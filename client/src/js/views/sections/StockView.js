@@ -6,13 +6,14 @@ var StockView = timber({
 
 	requires: [
 		'../../../templates/sections/StockView.handlebars template',
-		'../../utilities/YahooAPI YahooAPI'
+		'../../utilities/YahooAPI YahooAPI',
+		'../../../lib/js/jquery.csv.min $.csv'
 	],
 
 	init: function() {
 
 		YahooAPI().getStock("MSFT").done(function(data) {
-			console.log(data);
+			console.log($.csv.toArrays(data));
 		});
 
 		this.render();

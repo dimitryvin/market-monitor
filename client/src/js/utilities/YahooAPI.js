@@ -11,7 +11,20 @@ var YahooAPI = timber({
 			url: "http://finance.yahoo.com/d/quotes.csv",
 			data: {
 				s: stock,
-				f: "sb2b3jk"
+				f: ["g", //low
+					"h", //high
+					"j", //52 low
+					"k", //52 high
+					"o", //open
+					"v", //volume
+					"a2", //day avg vol
+					"j1", //mkt cap
+					"r", //p/e
+					"d", //div
+					"y", //div yield
+					"e", //eps
+					"j2" //s/o
+					].join('')
 			}
 
 		});
