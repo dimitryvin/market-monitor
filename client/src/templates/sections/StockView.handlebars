@@ -1,13 +1,11 @@
 <div class="stock-info">
-	<div class="price">{{data.price}}</div>
-	<div class="stat">Range: {{data.low}} - {{data.high}}</div>
-	<div class="stat">52 week: {{data.52_low}} - {{data.52_hight}}</div>
-	<div class="stat">Open: {{data.open}}</div>
-	<div class="stat">Vol / Avg: {{data.vol}} / {{data.avg_vol}}</div>
-	<div class="stat">Mkt Cap: {{data.cap}}</div>
-	<div class="stat">P/E: {{data.pe}}</div>
-	<div class="stat">Div/yield: {{data.dividend}} / {{data.div_yield}}</div>
-	<div class="stat">EPS: {{data.eps}}</div>
-	<div class="stat">Shares: {{data.so}}</div>
-	<div class="stat">Beta: {{data.beta}}</div>
+	<div class="price">{{stock.PreviousClose}}</div>
+	<div class="stat">Range: {{stock.DaysLow}} - {{stock.DaysHigh}}</div>
+	<div class="stat">52 week: {{stock.YearLow}} - {{stock.YearHigh}}</div>
+	<div class="stat">Open: {{stock.Open}}</div>
+	<div class="stat">Vol / Avg: {{stock.Volume}} / {{stock.AverageDailyVolume}}</div>
+	<div class="stat">Mkt Cap: {{stock.MarketCapitalization}}</div>
+	<div class="stat">P/E: {{stock.PERatio}}</div>
+	<div class="stat">EPS: {{stock.DilutedEPS}}</div>
+	<div class="stat">Shares: {{stock.SharesOutstanding}}</div>
 </div>

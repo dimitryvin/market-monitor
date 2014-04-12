@@ -1416,7 +1416,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"parent-container\">\n	<div class=\"container\"></div>\n</div>";
+  return "<div class=\"parent-container\">\r\n	<div class=\"container\"></div>\r\n</div>";
   });
 templates['HeaderView'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
@@ -1426,35 +1426,19 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\n	<li class=\"item\"><i class=\"fa "
+  buffer += "\r\n	<li class=\"item\"><i class=\"fa "
     + escapeExpression(((stack1 = (depth0 && depth0.icon)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "\"></i> "
     + escapeExpression(((stack1 = (depth0 && depth0.title)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</li>\n	";
+    + "</li>\r\n	";
   return buffer;
   }
 
-  buffer += "<div class=\"logo\"><strong>Market</strong>Monitor</div>\n\n<ul class=\"nav\">\n	";
+  buffer += "<div class=\"logo\"><strong>Market</strong>Monitor</div>\r\n\r\n<ul class=\"nav\">\r\n	";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.navitems), {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "	\n</ul>";
+  buffer += "	\r\n</ul>";
   return buffer;
-  });
-templates['SideView'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  
-
-
-  return "<ul class=\"nav-items\">\n	<li class=\"item\">+ Add Portfolio</li>\n	<li class=\"item\">Portfolio 1</li>\n	<li class=\"item\">Portfolio 2</li>\n	<li class=\"item\">Portfolio 3</li>\n	<li class=\"item\">Portfolio 4</li>\n</ul>";
-  });
-templates['lists/StockListView'] = template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  
-
-
-  return "<tr><th class=\"text\">Ticker</th><th class=\"number\">Price</th><th class=\"number\">Quantity</th><th class=\"number\">Low</th><th class=\"number\">High</th><th class=\"number\">Beta</th></tr>";
   });
 templates['lists/items/StockItemView'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
@@ -1464,18 +1448,26 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
   buffer += "<td class=\"text\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.ticker)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</td>\n<td class=\"number\">"
+    + "</td>\r\n<td class=\"number\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.price)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</td>\n<td class=\"number\">"
+    + "</td>\r\n<td class=\"number\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.quantity)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</td>\n<td class=\"number\">"
+    + "</td>\r\n<td class=\"number\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.low)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</td>\n<td class=\"number\">"
+    + "</td>\r\n<td class=\"number\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.high)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</td>\n<td class=\"number\">"
+    + "</td>\r\n<td class=\"number\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.beta)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</td>";
   return buffer;
+  });
+templates['lists/StockListView'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<tr><th class=\"text\">Ticker</th><th class=\"number\">Price</th><th class=\"number\">Quantity</th><th class=\"number\">Low</th><th class=\"number\">High</th><th class=\"number\">Beta</th></tr>";
   });
 templates['sections/PortfolioView'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
@@ -1491,38 +1483,40 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
-  buffer += "<div class=\"stock-info\">\n	<div class=\"price\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.price)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n	<div class=\"stat\">Range: "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.low)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+  buffer += "<div class=\"stock-info\">\r\n	<div class=\"price\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.PreviousClose)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n	<div class=\"stat\">Range: "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.DaysLow)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + " - "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.high)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n	<div class=\"stat\">52 week: "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1['52_low'])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.DaysHigh)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n	<div class=\"stat\">52 week: "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.YearLow)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + " - "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1['52_hight'])),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n	<div class=\"stat\">Open: "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.open)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n	<div class=\"stat\">Vol / Avg: "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.vol)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.YearHigh)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n	<div class=\"stat\">Open: "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.Open)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n	<div class=\"stat\">Vol / Avg: "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.Volume)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + " / "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.avg_vol)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n	<div class=\"stat\">Mkt Cap: "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.cap)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n	<div class=\"stat\">P/E: "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.pe)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n	<div class=\"stat\">Div/yield: "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.dividend)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + " / "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.div_yield)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n	<div class=\"stat\">EPS: "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.eps)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n	<div class=\"stat\">Shares: "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.so)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n	<div class=\"stat\">Beta: "
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.data)),stack1 == null || stack1 === false ? stack1 : stack1.beta)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\n</div>";
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.AverageDailyVolume)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n	<div class=\"stat\">Mkt Cap: "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.MarketCapitalization)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n	<div class=\"stat\">P/E: "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.PERatio)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n	<div class=\"stat\">EPS: "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.DilutedEPS)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n	<div class=\"stat\">Shares: "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.SharesOutstanding)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n</div>";
   return buffer;
+  });
+templates['SideView'] = template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<ul class=\"nav-items\">\r\n	<li class=\"item\">+ Add Portfolio</li>\r\n	<li class=\"item\">Portfolio 1</li>\r\n	<li class=\"item\">Portfolio 2</li>\r\n	<li class=\"item\">Portfolio 3</li>\r\n	<li class=\"item\">Portfolio 4</li>\r\n</ul>";
   });
 })();
 var Boot = timber({
@@ -1626,33 +1620,256 @@ var StockItemModel = timber({
 	}
 
 });
-var YahooAPI = timber({
+timber({
 
 	domless: true,
 	singleton: true,
 
-	getStock: function(stock) {
+	requires: [		
+		'~/lib/js/jquery.csv.min $.csv'
+	],
 
-		return $.ajax({
+	defaults: {
+
+		//https://code.google.com/p/yahoo-finance-managed/wiki/enumQuoteProperty
+		lookup: {
+			AfterHoursChangeRealtime: "c8",
+			AnnualizedGain: "g3",
+			Ask: "a0",
+			AskRealtime: "b2",
+			AskSize: "a5",
+			AverageDailyVolume: "a2",
+			Bid: "b0",
+			BidRealtime: "b3",
+			BidSize: "b6",
+			BookValuePerShare: "b4",
+			Change: "c1",
+			ChangeFromFiftydayMovingAverage: "m7",
+			ChangeFromTwoHundreddayMovingAverage: "m5",
+			ChangeFromYearHigh: "k4",
+			ChangeFromYearLow: "j5",
+			ChangeInPercent: "p2",
+			ChangeInPercentFromYearHigh: "k5",
+			ChangeInPercentRealtime: "k2",
+			ChangeRealtime: "c6",
+			Change_ChangeInPercent: "c0",
+			Commission: "c3",
+			Currency: "c4",
+			DaysHigh: "h0",
+			DaysLow: "g0",
+			DaysRange: "m0",
+			DaysRangeRealtime: "m2",
+			DaysValueChange: "w1",
+			DaysValueChangeRealtime: "w4",
+			DilutedEPS: "e0",
+			DividendPayDate: "r1",
+			EBITDA: "j4",
+			EPSEstimateCurrentYear: "e7",
+			EPSEstimateNextQuarter: "e9",
+			EPSEstimateNextYear: "e8",
+			ExDividendDate: "q0",
+			FiftydayMovingAverage: "m3",
+			HighLimit: "l2",
+			HoldingsGain: "g4",
+			HoldingsGainPercent: "g1",
+			HoldingsGainPercentRealtime: "g5",
+			HoldingsGainRealtime: "g6",
+			HoldingsValue: "v1",
+			HoldingsValueRealtime: "v7",
+			LastTradeDate: "d1",
+			LastTradePriceOnly: "l1",
+			LastTradeRealtimeWithTime: "k1",
+			LastTradeSize: "k3",
+			LastTradeTime: "t1",
+			LastTradeWithTime: "l0",
+			LowLimit: "l3",
+			MarketCapRealtime: "j3",
+			MarketCapitalization: "j1",
+			MoreInfo: "i0",
+			Name: "n0",
+			Notes: "n4",
+			OneyrTargetPrice: "t8",
+			Open: "o0",
+			OrderBookRealtime: "i5",
+			PEGRatio: "r5",
+			PERatio: "r0",
+			PERatioRealtime: "r2",
+			PercentChangeFromFiftydayMovingAverage: "m8",
+			PercentChangeFromTwoHundreddayMovingAverage: "m6",
+			PercentChangeFromYearLow: "j6",
+			PreviousClose: "p0",
+			PriceBook: "p6",
+			PriceEPSEstimateCurrentYear: "r6",
+			PriceEPSEstimateNextYear: "r7",
+			PricePaid: "p1",
+			PriceSales: "p5",
+			Revenue: "s6",
+			SharesFloat: "f6",
+			SharesOutstanding: "j2",
+			SharesOwned: "s1",
+			ShortRatio: "s7",
+			StockExchange: "x0",
+			Symbol: "s0",
+			TickerTrend: "t7",
+			TradeDate: "d2",
+			TradeLinks: "t6",
+			TradeLinksAdditional: "f0",
+			TrailingAnnualDividendYield: "d0",
+			TrailingAnnualDividendYieldInPercent: "y0",
+			TwoHundreddayMovingAverage: "m4",
+			Volume: "v0",
+			YearHigh: "k0",
+			YearLow: "j0",
+			YearRange: "w0",
+			a0: "Ask",
+			a2: "AverageDailyVolume",
+			a5: "AskSize",
+			b0: "Bid",
+			b2: "AskRealtime",
+			b3: "BidRealtime",
+			b4: "BookValuePerShare",
+			b6: "BidSize",
+			c0: "Change_ChangeInPercent",
+			c1: "Change",
+			c3: "Commission",
+			c4: "Currency",
+			c6: "ChangeRealtime",
+			c8: "AfterHoursChangeRealtime",
+			d0: "TrailingAnnualDividendYield",
+			d1: "LastTradeDate",
+			d2: "TradeDate",
+			e0: "DilutedEPS",
+			e7: "EPSEstimateCurrentYear",
+			e8: "EPSEstimateNextYear",
+			e9: "EPSEstimateNextQuarter",
+			f0: "TradeLinksAdditional",
+			f6: "SharesFloat",
+			g0: "DaysLow",
+			g1: "HoldingsGainPercent",
+			g3: "AnnualizedGain",
+			g4: "HoldingsGain",
+			g5: "HoldingsGainPercentRealtime",
+			g6: "HoldingsGainRealtime",
+			h0: "DaysHigh",
+			i0: "MoreInfo",
+			i5: "OrderBookRealtime",
+			j0: "YearLow",
+			j1: "MarketCapitalization",
+			j2: "SharesOutstanding",
+			j3: "MarketCapRealtime",
+			j4: "EBITDA",
+			j5: "ChangeFromYearLow",
+			j6: "PercentChangeFromYearLow",
+			k0: "YearHigh",
+			k1: "LastTradeRealtimeWithTime",
+			k2: "ChangeInPercentRealtime",
+			k3: "LastTradeSize",
+			k4: "ChangeFromYearHigh",
+			k5: "ChangeInPercentFromYearHigh",
+			l0: "LastTradeWithTime",
+			l1: "LastTradePriceOnly",
+			l2: "HighLimit",
+			l3: "LowLimit",
+			m0: "DaysRange",
+			m2: "DaysRangeRealtime",
+			m3: "FiftydayMovingAverage",
+			m4: "TwoHundreddayMovingAverage",
+			m5: "ChangeFromTwoHundreddayMovingAverage",
+			m6: "PercentChangeFromTwoHundreddayMovingAverage",
+			m7: "ChangeFromFiftydayMovingAverage",
+			m8: "PercentChangeFromFiftydayMovingAverage",
+			n0: "Name",
+			n4: "Notes",
+			o0: "Open",
+			p0: "PreviousClose",
+			p1: "PricePaid",
+			p2: "ChangeInPercent",
+			p5: "PriceSales",
+			p6: "PriceBook",
+			q0: "ExDividendDate",
+			r0: "PERatio",
+			r1: "DividendPayDate",
+			r2: "PERatioRealtime",
+			r5: "PEGRatio",
+			r6: "PriceEPSEstimateCurrentYear",
+			r7: "PriceEPSEstimateNextYear",
+			s0: "Symbol",
+			s1: "SharesOwned",
+			s6: "Revenue",
+			s7: "ShortRatio",
+			t1: "LastTradeTime",
+			t6: "TradeLinks",
+			t7: "TickerTrend",
+			t8: "OneyrTargetPrice",
+			v0: "Volume",
+			v1: "HoldingsValue",
+			v7: "HoldingsValueRealtime",
+			w0: "YearRange",
+			w1: "DaysValueChange",
+			w4: "DaysValueChangeRealtime",
+			x0: "StockExchange",
+			y0: "TrailingAnnualDividendYieldInPercent"
+		}
+	},
+
+	//builds the yahoo request params for their csv with the above lookup table
+	buildF: function(params) {
+
+		var len = params.length;
+
+		var query = [];
+		for (var i = 0; i < params.length; i++) {
+			query.push(this.lookup[params[i]]);
+		}
+
+		return query.join('');
+
+	},
+
+	getStock: function(stock, callback) {
+
+		var fields = [
+			"PreviousClose",
+			"DaysLow",
+			"DaysHigh",
+			"YearLow",
+			"YearHigh",
+			"Open",
+			"Volume",
+			"AverageDailyVolume",
+			"MarketCapRealtime",
+			"MarketCapitalization",
+			"PERatioRealtime",
+			"PERatio",
+			"DilutedEPS",
+
+			//make sure this is last
+			"SharesOutstanding"
+		];
+
+		$.ajax({
 
 			type: "GET",
 			url: "http://finance.yahoo.com/d/quotes.csv",
 			data: {
 				s: stock,
-				f: ["g", //low
-					"h", //high
-					"j", //52 low
-					"k", //52 high
-					"o", //open
-					"v", //volume
-					"a2", //day avg vol
-					"j1", //mkt cap
-					"r", //p/e
-					"d", //div
-					"y", //div yield
-					"e", //eps
-					"j2" //s/o
-					].join('')
+				f: this.buildF(fields)
+			},
+			success: function(data) {
+
+				var preParsed = $.csv.toArray(data);
+
+				var parsed = {};
+
+				// -1 to parse S/O
+				var len = fields.length - 1;
+				for (var i = 0; i < len; i++) {
+					parsed[fields[i]] = preParsed[0];
+					preParsed.shift();
+				}
+				parsed[fields[fields.length-1]] = preParsed.join('').trim();
+
+				callback(parsed);
 			}
 
 		});
@@ -1666,10 +1883,10 @@ var AppView = timber({
     className: 'app-container',
 
     requires: [
-        '../../templates/AppView.handlebars template',
-        'SideView SideView',
-        'HeaderView HeaderView',
-        'sections/StockView StockView'
+        '~/templates/AppView.handlebars template',
+        '~/js/views/SideView SideView',
+        '~/js/views/HeaderView HeaderView',
+        '~/js/views/sections/StockView StockView'
     ],
 
     init: function() {
@@ -1904,23 +2121,26 @@ var PortfolioView = timber({
 
 
 });
-var StockView = timber({
+timber({
 
 	className: 'stock-container',
 
 	tagName: "div",
 
 	requires: [
-		'../../../templates/sections/StockView.handlebars template',
-		'../../utilities/YahooAPI YahooAPI',
-		'../../../lib/js/jquery.csv.min $.csv'
+		'~/templates/sections/StockView.handlebars template',
+		'~/js/utilities/YahooAPI YahooAPI'
 	],
 
 	init: function() {
 
-		YahooAPI().getStock("MSFT").done(function(data) {
-			console.log($.csv.toArrays(data));
-		});
+		YahooAPI().getStock("AAPL", function(stock) {
+
+			this.stockData = stock;
+
+			this.render();
+
+		}.bind(this));
 
 		this.render();
 
@@ -1928,9 +2148,7 @@ var StockView = timber({
 
 	render: function() {
 
-		this.$el.html(template({
-			
-		}));
+		this.$el.html(template({ stock: this.stockData }));
 
 	}
 

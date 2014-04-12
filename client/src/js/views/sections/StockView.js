@@ -1,20 +1,23 @@
-var StockView = timber({
+timber({
 
 	className: 'stock-container',
 
 	tagName: "div",
 
 	requires: [
-		'../../../templates/sections/StockView.handlebars template',
-		'../../utilities/YahooAPI YahooAPI',
-		'../../../lib/js/jquery.csv.min $.csv'
+		'~/templates/sections/StockView.handlebars template',
+		'~/js/utilities/YahooAPI YahooAPI'
 	],
 
 	init: function() {
 
-		YahooAPI().getStock("MSFT").done(function(data) {
-			console.log($.csv.toArrays(data));
-		});
+		YahooAPI().getStock("AAPL", function(stock) {
+
+			this.stockData = stock;
+
+			this.render();
+
+		}.bind(this));
 
 		this.render();
 
@@ -22,9 +25,7 @@ var StockView = timber({
 
 	render: function() {
 
-		this.$el.html(template({
-			
-		}));
+		this.$el.html(template({ stock: this.stockData }));
 
 	}
 

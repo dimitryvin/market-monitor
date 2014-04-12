@@ -3,10 +3,10 @@ var AppView = timber({
     className: 'app-container',
 
     requires: [
-        '../../templates/AppView.handlebars template',
-        'SideView SideView',
-        'HeaderView HeaderView',
-        'sections/StockView StockView'
+        '~/templates/AppView.handlebars template',
+        '~/js/views/SideView SideView',
+        '~/js/views/HeaderView HeaderView',
+        '~/js/views/sections/StockView StockView'
     ],
 
     init: function() {
