@@ -7,12 +7,13 @@ timber({
 	requires: [
 		'~/templates/sections/StockView.handlebars template',
 		'~/js/utilities/YahooAPI YahooAPI',
-		'~/lib/js/spinner.min.js a'
+		'~/lib/js/spinner.min.js a',
+		'~/js/utilities/Utils Utils'
 	],
 
 	init: function() {
 
-		YahooAPI().getStock("TSLA", function(stock) {
+		YahooAPI().getStock(Utils().getVar('stock'), function(stock) {
 
 			this.stockData = stock;
 

@@ -1661,6 +1661,27 @@ var StockItemModel = timber({
 });
 timber({
 
+	singleton: true,
+	domless: true,
+
+	init: function() {},
+
+	getVar: function(VarSearch) {
+		var SearchString = window.location.search.substring(1);
+		var VariableArray = SearchString.split('&');
+		
+		for(var i = 0; i < VariableArray.length; i++){
+		    var KeyValuePair = VariableArray[i].split('=');
+		    if(KeyValuePair[0] == VarSearch){
+		        return KeyValuePair[1];
+		    }
+		}
+
+	}
+
+});
+timber({
+
 	domless: true,
 	singleton: true,
 
@@ -2197,12 +2218,13 @@ timber({
 	requires: [
 		'~/templates/sections/StockView.handlebars template',
 		'~/js/utilities/YahooAPI YahooAPI',
-		'~/lib/js/spinner.min.js a'
+		'~/lib/js/spinner.min.js a',
+		'~/js/utilities/Utils Utils'
 	],
 
 	init: function() {
 
-		YahooAPI().getStock("TSLA", function(stock) {
+		YahooAPI().getStock(Utils().getVar('stock'), function(stock) {
 
 			this.stockData = stock;
 
