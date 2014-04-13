@@ -235,6 +235,32 @@ html {
   text-align: left;
 }
 
+.stock-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.stock-container .stock-header {
+  padding: 10px;
+  font-size: 18px;
+}
+.stock-container .stock-info {
+  padding: 10px;
+}
+.stock-container .stock-info .stats {
+  float: left;
+}
+.stock-container .stock-info .stats .price {
+  font-weight: bold;
+  font-size: 48px;
+}
+.stock-container .stock-info .description {
+  max-width: 61.8%;
+  padding: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .side-view {
   width: 260px;
   height: 100%;

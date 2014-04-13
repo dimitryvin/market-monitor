@@ -607,6 +607,8 @@ var output=[];for(i in arrays){output.push(arrays[i]);}
 if(!config.callback){return output;}else{config.callback('',output);}},fromObjects2CSV:function(objects,options,callback){var options=(options!==undefined?options:{});var config={};config.callback=((callback!==undefined&&typeof(callback)==='function')?callback:false);config.separator='separator'in options?options.separator:$.csv.defaults.separator;config.delimiter='delimiter'in options?options.delimiter:$.csv.defaults.delimiter;config.experimental='experimental'in options?options.experimental:false;if(!config.experimental){throw new Error('not implemented');}
 var output=[];for(i in objects){output.push(arrays[i]);}
 if(!config.callback){return output;}else{config.callback('',output);}}};$.csvEntry2Array=$.csv.toArray;$.csv2Array=$.csv.toArrays;$.csv2Dictionary=$.csv.toObjects;})(jQuery);
+//fgnass.github.com/spin.js#v2.0.0
+!function(a,b){"object"==typeof exports?module.exports=b():"function"==typeof define&&define.amd?define(b):a.Spinner=b()}(this,function(){"use strict";function a(a,b){var c,d=document.createElement(a||"div");for(c in b)d[c]=b[c];return d}function b(a){for(var b=1,c=arguments.length;c>b;b++)a.appendChild(arguments[b]);return a}function c(a,b,c,d){var e=["opacity",b,~~(100*a),c,d].join("-"),f=.01+c/d*100,g=Math.max(1-(1-a)/b*(100-f),a),h=j.substring(0,j.indexOf("Animation")).toLowerCase(),i=h&&"-"+h+"-"||"";return l[e]||(m.insertRule("@"+i+"keyframes "+e+"{0%{opacity:"+g+"}"+f+"%{opacity:"+a+"}"+(f+.01)+"%{opacity:1}"+(f+b)%100+"%{opacity:"+a+"}100%{opacity:"+g+"}}",m.cssRules.length),l[e]=1),e}function d(a,b){var c,d,e=a.style;for(b=b.charAt(0).toUpperCase()+b.slice(1),d=0;d<k.length;d++)if(c=k[d]+b,void 0!==e[c])return c;return void 0!==e[b]?b:void 0}function e(a,b){for(var c in b)a.style[d(a,c)||c]=b[c];return a}function f(a){for(var b=1;b<arguments.length;b++){var c=arguments[b];for(var d in c)void 0===a[d]&&(a[d]=c[d])}return a}function g(a,b){return"string"==typeof a?a:a[b%a.length]}function h(a){this.opts=f(a||{},h.defaults,n)}function i(){function c(b,c){return a("<"+b+' xmlns="urn:schemas-microsoft.com:vml" class="spin-vml">',c)}m.addRule(".spin-vml","behavior:url(#default#VML)"),h.prototype.lines=function(a,d){function f(){return e(c("group",{coordsize:k+" "+k,coordorigin:-j+" "+-j}),{width:k,height:k})}function h(a,h,i){b(m,b(e(f(),{rotation:360/d.lines*a+"deg",left:~~h}),b(e(c("roundrect",{arcsize:d.corners}),{width:j,height:d.width,left:d.radius,top:-d.width>>1,filter:i}),c("fill",{color:g(d.color,a),opacity:d.opacity}),c("stroke",{opacity:0}))))}var i,j=d.length+d.width,k=2*j,l=2*-(d.width+d.length)+"px",m=e(f(),{position:"absolute",top:l,left:l});if(d.shadow)for(i=1;i<=d.lines;i++)h(i,-2,"progid:DXImageTransform.Microsoft.Blur(pixelradius=2,makeshadow=1,shadowopacity=.3)");for(i=1;i<=d.lines;i++)h(i);return b(a,m)},h.prototype.opacity=function(a,b,c,d){var e=a.firstChild;d=d.shadow&&d.lines||0,e&&b+d<e.childNodes.length&&(e=e.childNodes[b+d],e=e&&e.firstChild,e=e&&e.firstChild,e&&(e.opacity=c))}}var j,k=["webkit","Moz","ms","O"],l={},m=function(){var c=a("style",{type:"text/css"});return b(document.getElementsByTagName("head")[0],c),c.sheet||c.styleSheet}(),n={lines:12,length:7,width:5,radius:10,rotate:0,corners:1,color:"#000",direction:1,speed:1,trail:100,opacity:.25,fps:20,zIndex:2e9,className:"spinner",top:"50%",left:"50%",position:"absolute"};h.defaults={},f(h.prototype,{spin:function(b){this.stop();{var c=this,d=c.opts,f=c.el=e(a(0,{className:d.className}),{position:d.position,width:0,zIndex:d.zIndex});d.radius+d.length+d.width}if(b&&(b.insertBefore(f,b.firstChild||null),e(f,{left:d.left,top:d.top})),f.setAttribute("role","progressbar"),c.lines(f,c.opts),!j){var g,h=0,i=(d.lines-1)*(1-d.direction)/2,k=d.fps,l=k/d.speed,m=(1-d.opacity)/(l*d.trail/100),n=l/d.lines;!function o(){h++;for(var a=0;a<d.lines;a++)g=Math.max(1-(h+(d.lines-a)*n)%l*m,d.opacity),c.opacity(f,a*d.direction+i,g,d);c.timeout=c.el&&setTimeout(o,~~(1e3/k))}()}return c},stop:function(){var a=this.el;return a&&(clearTimeout(this.timeout),a.parentNode&&a.parentNode.removeChild(a),this.el=void 0),this},lines:function(d,f){function h(b,c){return e(a(),{position:"absolute",width:f.length+f.width+"px",height:f.width+"px",background:b,boxShadow:c,transformOrigin:"left",transform:"rotate("+~~(360/f.lines*k+f.rotate)+"deg) translate("+f.radius+"px,0)",borderRadius:(f.corners*f.width>>1)+"px"})}for(var i,k=0,l=(f.lines-1)*(1-f.direction)/2;k<f.lines;k++)i=e(a(),{position:"absolute",top:1+~(f.width/2)+"px",transform:f.hwaccel?"translate3d(0,0,0)":"",opacity:f.opacity,animation:j&&c(f.opacity,f.trail,l+k*f.direction,f.lines)+" "+1/f.speed+"s linear infinite"}),f.shadow&&b(i,e(h("#000","0 0 4px #000"),{top:"2px"})),b(d,b(i,h(g(f.color,k),"0 0 1px rgba(0,0,0,.1)")));return d},opacity:function(a,b,c){b<a.childNodes.length&&(a.childNodes[b].style.opacity=c)}});var o=e(a("group"),{behavior:"url(#default#VML)"});return!d(o,"transform")&&o.adj?i():j=d(o,"animation"),h});
 var isNodeJS = false;
 try{
     isNodeJS = typeof module !== 'undefined' && typeof module.exports !== 'undefined' && process !== 'undefined' && global !== 'undefined';
@@ -1480,35 +1482,54 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 templates['sections/StockView'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
+  var stack1, functionType="function", escapeExpression=this.escapeExpression, self=this;
 
+function program1(depth0,data) {
+  
+  
+  return "\r\n";
+  }
 
-  buffer += "<div class=\"stock-info\">\r\n	<div class=\"price\">"
+function program3(depth0,data) {
+  
+  var buffer = "", stack1;
+  buffer += "\r\n<div class=\"stock-header\"><strong>"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.ticker)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</strong> &bull; "
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.Name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n<div class=\"stock-info\">\r\n	<div class=\"stats\">\r\n		<div class=\"price\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.PreviousClose)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n	<div class=\"stat\">Range: "
+    + "</div>\r\n		<div class=\"stat\">Range: "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.DaysLow)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + " - "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.DaysHigh)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n	<div class=\"stat\">52 week: "
+    + "</div>\r\n		<div class=\"stat\">52 week: "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.YearLow)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + " - "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.YearHigh)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n	<div class=\"stat\">Open: "
+    + "</div>\r\n		<div class=\"stat\">Open: "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.Open)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n	<div class=\"stat\">Vol / Avg: "
+    + "</div>\r\n		<div class=\"stat\">Vol / Avg: "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.Volume)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + " / "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.AverageDailyVolume)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n	<div class=\"stat\">Mkt Cap: "
+    + "</div>\r\n		<div class=\"stat\">Mkt Cap: "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.MarketCapitalization)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n	<div class=\"stat\">P/E: "
+    + "</div>\r\n		<div class=\"stat\">P/E: "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.PERatio)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n	<div class=\"stat\">EPS: "
+    + "</div>\r\n		<div class=\"stat\">EPS: "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.DilutedEPS)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n	<div class=\"stat\">Shares: "
+    + "</div>\r\n		<div class=\"stat\">Shares: "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.SharesOutstanding)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n</div>";
+    + "</div>\r\n	</div>\r\n	<div class=\"description\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.Description)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</div>\r\n</div>\r\n";
   return buffer;
+  }
+
+  stack1 = helpers['if'].call(depth0, (depth0 && depth0.empty), {hash:{},inverse:self.program(3, program3, data),fn:self.program(1, program1, data),data:data});
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
   });
 templates['SideView'] = template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
@@ -1529,12 +1550,30 @@ var Boot = timber({
 
 	init: function() {
 
+
 		$.ajaxSetup({
 			beforeSend: function(xhr, url, c) {
-			 	if(url.url.substr(0, 24) === 'http://finance.yahoo.com')
+			 	if(this.toProxy(url.url))
 			  		url.url = window.location.href.match(/^[a-zA-Z]+:\/\/([^\/^:]+)/)[0] + ':3001?url=' + url.url;
-			}
+			}.bind(this)
 		});
+
+	},
+
+	toProxy: function(url) {
+
+		var proxyUrls = [
+			'http://finance.yahoo.com',
+			'http://www.reuters.com/finance/stocks/companyProfile'
+		];
+
+		var len = proxyUrls.length;
+		for (var i = 0; i < len; i++) {
+			if (url.indexOf(proxyUrls[i]) > -1)
+				return true;
+		}
+
+		return false;
 
 	},
 
@@ -1828,7 +1867,10 @@ timber({
 
 	getStock: function(stock, callback) {
 
+		var requestsRunning = 0;
+
 		var fields = [
+			"Name",
 			"PreviousClose",
 			"DaysLow",
 			"DaysHigh",
@@ -1847,6 +1889,10 @@ timber({
 			"SharesOutstanding"
 		];
 
+		//holder
+		var parsed = {};
+
+		requestsRunning++;
 		$.ajax({
 
 			type: "GET",
@@ -1859,21 +1905,42 @@ timber({
 
 				var preParsed = $.csv.toArray(data);
 
-				var parsed = {};
-
 				// -1 to parse S/O
 				var len = fields.length - 1;
 				for (var i = 0; i < len; i++) {
 					parsed[fields[i]] = preParsed[0];
 					preParsed.shift();
 				}
-				parsed[fields[fields.length-1]] = preParsed.join('').trim();
 
-				callback(parsed);
+				parsed[fields[fields.length-1]] = preParsed.join('').trim();
+				parsed.ticker = stock;
+
+				requestsRunning--;
+
+				runCallback();
 			}
 
 		});
 
+		requestsRunning++;
+		$.ajax({
+			url: "http://www.reuters.com/finance/stocks/companyProfile",
+			data: { symbol: stock },
+			success: function(data) {
+				requestsRunning--;
+				
+				parsed.Description = /<div class="moduleBody">[^<]*<p>([\s\S]*?)<\/p>/mi.exec(data)[1];
+
+				runCallback();
+			}
+
+		});
+
+		function runCallback() {
+			if (requestsRunning == 0)
+				callback(parsed);
+		}
+ 
 	}
 
 
@@ -2129,12 +2196,13 @@ timber({
 
 	requires: [
 		'~/templates/sections/StockView.handlebars template',
-		'~/js/utilities/YahooAPI YahooAPI'
+		'~/js/utilities/YahooAPI YahooAPI',
+		'~/lib/js/spinner.min.js a'
 	],
 
 	init: function() {
 
-		YahooAPI().getStock("AAPL", function(stock) {
+		YahooAPI().getStock("TSLA", function(stock) {
 
 			this.stockData = stock;
 
@@ -2148,7 +2216,41 @@ timber({
 
 	render: function() {
 
-		this.$el.html(template({ stock: this.stockData }));
+		this.$el.animate({ opacity: 0 }, 100, function() {
+
+			this.$el.html(template({ empty: !this.stockData, stock: this.stockData })).animate({ opacity: 1 }, 100);
+
+			if (!this.stockData) {
+				setTimeout(function() { 
+					var opts = {
+						lines: 13, // The number of lines to draw
+						length: 20, // The length of each line
+						width: 10, // The line thickness
+						radius: 30, // The radius of the inner circle
+						corners: 1, // Corner roundness (0..1)
+						rotate: 0, // The rotation offset
+						direction: 1, // 1: clockwise, -1: counterclockwise
+						color: '#000', // #rgb or #rrggbb or array of colors
+						speed: 1, // Rounds per second
+						trail: 60, // Afterglow percentage
+						shadow: false, // Whether to render a shadow
+						hwaccel: false, // Whether to use hardware acceleration
+						className: 'spinner', // The CSS class to assign to the spinner
+						zIndex: 2e9, // The z-index (defaults to 2000000000)
+						top: this.$el.height() / 2 + 'px', // Top position relative to parent in px
+						left: this.$el.width() / 2 + 'px' // Left position relative to parent in px
+					};
+
+					console.log(this.$el.width());
+					var target = this.el;
+					var spinner = new Spinner(opts).spin(target);
+				}.bind(this), 0);
+			}
+
+		}.bind(this));
+
+		
+
 
 	}
 

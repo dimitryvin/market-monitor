@@ -206,7 +206,10 @@ timber({
 
 	getStock: function(stock, callback) {
 
+		var requestsRunning = 0;
+
 		var fields = [
+			"Name",
 			"PreviousClose",
 			"DaysLow",
 			"DaysHigh",
@@ -225,6 +228,10 @@ timber({
 			"SharesOutstanding"
 		];
 
+		//holder
+		var parsed = {};
+
+		requestsRunning++;
 		$.ajax({
 
 			type: "GET",
@@ -237,21 +244,42 @@ timber({
 
 				var preParsed = $.csv.toArray(data);
 
-				var parsed = {};
-
 				// -1 to parse S/O
 				var len = fields.length - 1;
 				for (var i = 0; i < len; i++) {
 					parsed[fields[i]] = preParsed[0];
 					preParsed.shift();
 				}
-				parsed[fields[fields.length-1]] = preParsed.join('').trim();
 
-				callback(parsed);
+				parsed[fields[fields.length-1]] = preParsed.join('').trim();
+				parsed.ticker = stock;
+
+				requestsRunning--;
+
+				runCallback();
 			}
 
 		});
 
+		requestsRunning++;
+		$.ajax({
+			url: "http://www.reuters.com/finance/stocks/companyProfile",
+			data: { symbol: stock },
+			success: function(data) {
+				requestsRunning--;
+				
+				parsed.Description = /<div class="moduleBody">[^<]*<p>([\s\S]*?)<\/p>/mi.exec(data)[1];
+
+				runCallback();
+			}
+
+		});
+
+		function runCallback() {
+			if (requestsRunning == 0)
+				callback(parsed);
+		}
+ 
 	}
 
 
