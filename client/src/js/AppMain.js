@@ -22,6 +22,7 @@ var Boot = timber({
 
 		var proxyUrls = [
 			'http://finance.yahoo.com',
+			'http://ichart.yahoo.com',
 			'http://www.reuters.com/finance/stocks/companyProfile'
 		];
 

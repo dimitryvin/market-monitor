@@ -4,13 +4,12 @@
 	height: 100%;
 	width: 100%;
 
-	.stock-header {
-		padding: 10px;
-		font-size: 18px;
-	}
-
 	.stock-info {
 		padding: 10px;
+
+		.stock-header {
+			font-size: 18px;
+		}
 
 		.stats {
 			float: left;
@@ -27,6 +26,23 @@
 			overflow: hidden;
 			text-overflow: ellipsis;
 		}
+	}
+
+	.left {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 300px;
+		overflow-y: auto;
+	}
+
+	.right {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		width: 300px;
 	}
 
 

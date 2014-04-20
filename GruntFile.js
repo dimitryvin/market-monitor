@@ -62,7 +62,7 @@ module.exports = function(grunt) {
         less: {
             task: {
                 files: {
-                    "client/src/compiled/market.css": ['client/src/css/*.css', "client/src/less/**/*.less"]
+                    "client/src/compiled/market.css": ['client/src/css/*.css', "client/src/less/**/*.less", "client/src/lib/css/*.css"]
                 }
             }
         },

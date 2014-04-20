@@ -8,7 +8,8 @@ timber({
 		'~/templates/sections/StockView.handlebars template',
 		'~/js/utilities/YahooAPI YahooAPI',
 		'~/lib/js/spinner.min.js a',
-		'~/js/utilities/Utils Utils'
+		'~/js/utilities/Utils Utils',
+		'~/lib/js/nv.d3.min.js b'
 	],
 
 	init: function() {
@@ -52,10 +53,42 @@ timber({
 						left: this.$el.width() / 2 + 'px' // Left position relative to parent in px
 					};
 
-					console.log(this.$el.width());
 					var target = this.el;
 					var spinner = new Spinner(opts).spin(target);
 				}.bind(this), 0);
+			} else {
+				nv.addGraph(function() {
+					this.chart = nv.models.lineWithFocusChart()				
+						.x(function(d) { return d.date; })
+						.y(function(d) { return d.price; });
+
+					this.chart.xAxis
+						.tickFormat(function(d) {
+							return d3.time.format('%x')(new Date(d))
+						});
+
+
+					this.chart.x2Axis
+						.tickFormat(function(d) {
+							return d3.time.format('%x')(new Date(d))
+						});
+
+					this.chart.yAxis
+						.tickFormat(d3.format(',.2f'));
+
+					this.chart.y2Axis
+						.tickFormat(d3.format(',.2f'));
+
+					d3.select('#chart svg')
+						.datum(this.stockData.histData)
+						.transition().duration(500)
+						.call(this.chart);
+
+					nv.utils.windowResize(this.chart.update);
+
+					return chart;
+				}.bind(this));
+
 			}
 
 		}.bind(this));

@@ -81,37 +81,37 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = "", stack1;
-  buffer += "\r\n<div class=\"stock-header\"><strong>"
+  buffer += "\r\n<div class=\"left\">\r\n	<div class=\"stock-info\">\r\n		<div class=\"stock-header\"><strong>"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.ticker)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</strong> &bull; "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.Name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n<div class=\"stock-info\">\r\n	<div class=\"stats\">\r\n		<div class=\"price\">"
+    + "</div>\r\n		<div class=\"stats\">\r\n			<div class=\"price\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.PreviousClose)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n		<div class=\"stat\">Range: "
+    + "</div>\r\n			<div class=\"stat\">Range: "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.DaysLow)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + " - "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.DaysHigh)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n		<div class=\"stat\">52 week: "
+    + "</div>\r\n			<div class=\"stat\">52 week: "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.YearLow)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + " - "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.YearHigh)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n		<div class=\"stat\">Open: "
+    + "</div>\r\n			<div class=\"stat\">Open: "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.Open)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n		<div class=\"stat\">Vol / Avg: "
+    + "</div>\r\n			<div class=\"stat\">Vol / Avg: "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.Volume)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + " / "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.AverageDailyVolume)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n		<div class=\"stat\">Mkt Cap: "
+    + "</div>\r\n			<div class=\"stat\">Mkt Cap: "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.MarketCapitalization)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n		<div class=\"stat\">P/E: "
+    + "</div>\r\n			<div class=\"stat\">P/E: "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.PERatio)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n		<div class=\"stat\">EPS: "
+    + "</div>\r\n			<div class=\"stat\">EPS: "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.DilutedEPS)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n		<div class=\"stat\">Shares: "
+    + "</div>\r\n			<div class=\"stat\">Shares: "
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.SharesOutstanding)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n	</div>\r\n	<div class=\"description\">"
+    + "</div>\r\n		</div>\r\n		<div class=\"description\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.Description)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n</div>\r\n";
+    + "</div>\r\n	</div>\r\n	<div id=\"chart\"><svg style=\"height:500px\"></svg></div>\r\n</div>\r\n<div class=\"right\"></div>\r\n";
   return buffer;
   }
 

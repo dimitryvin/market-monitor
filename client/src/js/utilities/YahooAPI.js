@@ -4,7 +4,7 @@ timber({
 	singleton: true,
 
 	requires: [		
-		'~/lib/js/jquery.csv.min $.csv'
+		'~/js/utilities/Utils Utils'
 	],
 
 	defaults: {
@@ -241,8 +241,7 @@ timber({
 				f: this.buildF(fields)
 			},
 			success: function(data) {
-
-				var preParsed = $.csv.toArray(data);
+				var preParsed = Utils().CSVToArray(data)[0];
 
 				// -1 to parse S/O
 				var len = fields.length - 1;
@@ -275,12 +274,45 @@ timber({
 
 		});
 
+		requestsRunning++;
+		$.ajax({
+
+			url: "http://ichart.yahoo.com/table.csv",
+			type: "GET",
+			data: { 
+				s: stock,
+				a: 3, //#month - 1 | start
+				b: 15, //day | start
+				c: 2000, //year | start
+				d: 3, //#month - 1 | end
+				e: 15, //day | end
+				f: 2010, //year | end
+				g: "w", //trade period d w m
+				ignore: ".csv"
+			},
+			success: function(data) {
+				var preParsed = Utils().CSVToArray(data);
+
+				var histData = [ { key: stock, values: [] } ];
+
+				var len = preParsed.length;
+				for (var i = 2; i < len; i++) {
+					histData[0].values.push({ date: new Date(preParsed[i][0]).getTime(), price: preParsed[i][6] });
+				}
+
+				parsed.histData = histData;
+
+				requestsRunning--;
+				runCallback();
+			}
+
+		});
+
 		function runCallback() {
 			if (requestsRunning == 0)
 				callback(parsed);
 		}
  
 	}
-
 
 });

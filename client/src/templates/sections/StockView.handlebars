@@ -1,18 +1,22 @@
 {{#if empty}}
 {{else}}
-<div class="stock-header"><strong>{{stock.ticker}}</strong> &bull; {{stock.Name}}</div>
-<div class="stock-info">
-	<div class="stats">
-		<div class="price">{{stock.PreviousClose}}</div>
-		<div class="stat">Range: {{stock.DaysLow}} - {{stock.DaysHigh}}</div>
-		<div class="stat">52 week: {{stock.YearLow}} - {{stock.YearHigh}}</div>
-		<div class="stat">Open: {{stock.Open}}</div>
-		<div class="stat">Vol / Avg: {{stock.Volume}} / {{stock.AverageDailyVolume}}</div>
-		<div class="stat">Mkt Cap: {{stock.MarketCapitalization}}</div>
-		<div class="stat">P/E: {{stock.PERatio}}</div>
-		<div class="stat">EPS: {{stock.DilutedEPS}}</div>
-		<div class="stat">Shares: {{stock.SharesOutstanding}}</div>
+<div class="left">
+	<div class="stock-info">
+		<div class="stock-header"><strong>{{stock.ticker}}</strong> &bull; {{stock.Name}}</div>
+		<div class="stats">
+			<div class="price">{{stock.PreviousClose}}</div>
+			<div class="stat">Range: {{stock.DaysLow}} - {{stock.DaysHigh}}</div>
+			<div class="stat">52 week: {{stock.YearLow}} - {{stock.YearHigh}}</div>
+			<div class="stat">Open: {{stock.Open}}</div>
+			<div class="stat">Vol / Avg: {{stock.Volume}} / {{stock.AverageDailyVolume}}</div>
+			<div class="stat">Mkt Cap: {{stock.MarketCapitalization}}</div>
+			<div class="stat">P/E: {{stock.PERatio}}</div>
+			<div class="stat">EPS: {{stock.DilutedEPS}}</div>
+			<div class="stat">Shares: {{stock.SharesOutstanding}}</div>
+		</div>
+		<div class="description">{{stock.Description}}</div>
 	</div>
-	<div class="description">{{stock.Description}}</div>
+	<div id="chart"><svg style="height:500px"></svg></div>
 </div>
+<div class="right"></div>
 {{/if}}
