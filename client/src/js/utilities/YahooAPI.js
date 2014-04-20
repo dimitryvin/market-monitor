@@ -275,18 +275,19 @@ timber({
 		});
 
 		requestsRunning++;
+		var today = new Date();
 		$.ajax({
 
 			url: "http://ichart.yahoo.com/table.csv",
 			type: "GET",
 			data: { 
 				s: stock,
-				a: 3, //#month - 1 | start
-				b: 15, //day | start
-				c: 2000, //year | start
-				d: 3, //#month - 1 | end
-				e: 15, //day | end
-				f: 2010, //year | end
+				a: 0, //#month - 1 | start
+				b: 1, //day | start
+				c: 2010, //year | start
+				d: today.getMonth(), //#month - 1 | end
+				e: today.getDate(), //day | end
+				f: today.getFullYear(), //year | end
 				g: "w", //trade period d w m
 				ignore: ".csv"
 			},
@@ -295,9 +296,13 @@ timber({
 
 				var histData = [ { key: stock, values: [] } ];
 
-				var len = preParsed.length;
-				for (var i = 2; i < len; i++) {
-					histData[0].values.push({ date: new Date(preParsed[i][0]).getTime(), price: preParsed[i][6] });
+				var len = preParsed.length - 1;
+				for (var i = 1; i < len; i++) {
+					histData[0].values.unshift({ 
+						date: preParsed[i][0], 
+						price: preParsed[i][6],
+						volume: preParsed[i][5]
+					});
 				}
 
 				parsed.histData = histData;

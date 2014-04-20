@@ -111,7 +111,7 @@ function program3(depth0,data) {
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.SharesOutstanding)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</div>\r\n		</div>\r\n		<div class=\"description\">"
     + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.stock)),stack1 == null || stack1 === false ? stack1 : stack1.Description)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</div>\r\n	</div>\r\n	<div id=\"chart\"><svg style=\"height:500px\"></svg></div>\r\n</div>\r\n<div class=\"right\"></div>\r\n";
+    + "</div>\r\n	</div>\r\n	<div id=\"chart\"></div>\r\n</div>\r\n<div class=\"right\"></div>\r\n";
   return buffer;
   }
 

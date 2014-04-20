@@ -8,8 +8,8 @@ timber({
 		'~/templates/sections/StockView.handlebars template',
 		'~/js/utilities/YahooAPI YahooAPI',
 		'~/lib/js/spinner.min.js a',
-		'~/js/utilities/Utils Utils',
-		'~/lib/js/nv.d3.min.js b'
+		'~/js/utilities/Utils Utils'
+
 	],
 
 	init: function() {
@@ -57,37 +57,61 @@ timber({
 					var spinner = new Spinner(opts).spin(target);
 				}.bind(this), 0);
 			} else {
-				nv.addGraph(function() {
-					this.chart = nv.models.lineWithFocusChart()				
-						.x(function(d) { return d.date; })
-						.y(function(d) { return d.price; });
 
-					this.chart.xAxis
-						.tickFormat(function(d) {
-							return d3.time.format('%x')(new Date(d))
-						});
+				chart = new AmCharts.AmSerialChart();
+                chart.pathToImages = "compiled/images/";
+				chart.dataProvider = this.stockData.histData[0].values;
+                chart.categoryField = "date";
+                chart.dataDateFormat = "YYYY-MM-DD";
 
+                // AXES
+                // category
+                var categoryAxis = chart.categoryAxis;
+                categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
+                categoryAxis.minPeriod = "DD"; // our data is daily, so we set minPeriod to DD
+                categoryAxis.dashLength = 1;
+                categoryAxis.gridAlpha = 0.15;
+                categoryAxis.minorGridEnabled = true;
+                categoryAxis.axisColor = "#DADADA";
 
-					this.chart.x2Axis
-						.tickFormat(function(d) {
-							return d3.time.format('%x')(new Date(d))
-						});
+                // value
+                var valueAxis = new AmCharts.ValueAxis();
+                valueAxis.axisAlpha = 0.2;
+                valueAxis.dashLength = 1;
+                chart.addValueAxis(valueAxis);
+ 				
+ 				// GRAPH
+                var graph = new AmCharts.AmGraph();
+                graph.title = "red line";
+                graph.valueField = "price";
+                graph.bullet = "round";
+                graph.bulletBorderColor = "#FFFFFF";
+                graph.bulletBorderThickness = 2;
+                graph.bulletBorderAlpha = 1;
+                graph.fillAlphas = 0.5;
+                graph.lineThickness = 2;
+                graph.lineColor = "#9eaec6";
+                graph.negativeLineColor = "#9eaec6";
+                graph.balloonText = "[[category]]<br><b><span style='font-size:14px;'>value: [[value]]</span></b>";
+                graph.hideBulletsCount = 50; // this makes the chart to hide bullets when there are more than 50 series in selection
+                chart.addGraph(graph);
 
-					this.chart.yAxis
-						.tickFormat(d3.format(',.2f'));
+                // CURSOR
+                chartCursor = new AmCharts.ChartCursor();
+                chartCursor.cursorPosition = "mouse";
+                chartCursor.categoryBalloonColor = "#9eaec6";
+                chartCursor.cursorColor = "#9eaec6";
+                chart.addChartCursor(chartCursor);
 
-					this.chart.y2Axis
-						.tickFormat(d3.format(',.2f'));
+                // SCROLLBAR
+                var chartScrollbar = new AmCharts.ChartScrollbar();
+                chartScrollbar.graph = graph;
+                chartScrollbar.scrollbarHeight = 40;
+                chartScrollbar.color = "#FFFFFF";
+                chartScrollbar.autoGridCount = true;
+                chart.addChartScrollbar(chartScrollbar);
 
-					d3.select('#chart svg')
-						.datum(this.stockData.histData)
-						.transition().duration(500)
-						.call(this.chart);
-
-					nv.utils.windowResize(this.chart.update);
-
-					return chart;
-				}.bind(this));
+				chart.write('chart');
 
 			}
 
