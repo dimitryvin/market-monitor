@@ -51,7 +51,7 @@ timber({
 						zIndex: 2e9, // The z-index (defaults to 2000000000)
 						top: this.$el.height() / 2 + 'px', // Top position relative to parent in px
 						left: this.$el.width() / 2 + 'px' // Left position relative to parent in px
-					};
+					}; 
 
 					var target = this.el;
 					var spinner = new Spinner(opts).spin(target);
